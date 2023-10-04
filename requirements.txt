@@ -5,7 +5,10 @@ npm install -g @angular/cli
 npm install -g express-generator
 
 # Install mathjs for the advanced calculator functionality
+# Frontend
 npm install mathjs
+# Backend
+npm install cors
 npm install express multer
 
 # Install for both front and back end 

@@ -53,6 +53,22 @@ app.get('/files', (req, res) => {
   });
 });
 
+app.delete('/delete/:filename', (req, res) => {
+  const file = path.join(__dirname, 'uploads', req.params.filename);
+
+  if (!fs.existsSync(file)) {
+    return res.status(404).send('File not found');
+  }
+
+  fs.unlink(file, (err) => {
+    if (err) {
+      console.error('Error deleting file:', err);
+      return res.status(500).send('Error deleting file');
+    }
+    res.send('File deleted successfully');
+  });
+});
+
 app.listen(3000, () => {
   console.log('Server started on http://localhost:3000');
 });

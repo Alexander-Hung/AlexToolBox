@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -9,7 +9,7 @@ import { HttpClient } from '@angular/common/http';
 export class FileShareComponent implements OnInit {
   files: string[] = [];
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private cd: ChangeDetectorRef) { }
 
   ngOnInit(): void {
     this.refreshFileList();
@@ -18,9 +18,22 @@ export class FileShareComponent implements OnInit {
   refreshFileList() {
     this.http.get<string[]>('http://localhost:3000/files').subscribe(files => {
       this.files = files;
+      this.cd.detectChanges();
+
+    }, error => {
+      console.error('Error fetching file list:', error);
     });
   }
 
+
+  deleteFile(file: string) {
+    this.http.delete(`http://localhost:3000/delete/${file}`).subscribe(response => {
+      console.log('File deleted');
+      this.refreshFileList();  // Refresh the file list after deleting a file
+    }, error => {
+      console.error('Error deleting file:', error);
+    });
+  }
   onFileSelected(event: any) {
     const file = event.target.files[0];
     if (file) {
@@ -28,10 +41,11 @@ export class FileShareComponent implements OnInit {
       formData.append('file', file, file.name);
       this.http.post('http://localhost:3000/upload', formData).subscribe(response => {
         console.log('Upload complete');
-        this.refreshFileList();  // Refresh the file list after uploading a new file
+        this.refreshFileList();  // Make sure this line is here
       });
     }
   }
+
 
   downloadFile(file: string) {
     window.location.href = `http://localhost:3000/download/${file}`;

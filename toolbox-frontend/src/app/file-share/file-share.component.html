@@ -1,10 +1,38 @@
-<!-- Upload Section -->
-<button mat-raised-button (click)="fileInput.click()">Upload File</button>
-<input hidden type="file" #fileInput (change)="onFileSelected($event)" />
+<mat-toolbar color="primary">
+  <router-outlet>
+    <mat-list-item>
+      <span style="font-size: 40px">Alex's Toolbox</span>
+      <span class="spacer"></span>
+    </mat-list-item>
+  </router-outlet>
+</mat-toolbar>
 
-<!-- File List Section -->
-<mat-list *ngIf="files.length > 0">
-  <mat-list-item *ngFor="let file of files">
-    <button mat-raised-button (click)="downloadFile(file)">{{ file }}</button>
-  </mat-list-item>
-</mat-list>
+<router-outlet>
+  <h1 style="margin-top: 16px">LAN sharing: <span style="font-size: 17px">File sharing with web</span></h1>
+</router-outlet>
+
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav mode="side" opened class="sidenav">
+    <mat-nav-list class="mat-nav-list-padding">
+      <a mat-list-item routerLink="/home">Home Page</a>
+      <a mat-list-item routerLink="/service">Tool list</a>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <router-outlet class="context"><h4>**Auto refresh may not working, please refresh list by yourself**</h4></router-outlet>
+    <router-outlet class="context">
+      <!-- Upload Section -->
+      <button style="margin-right: 300px" mat-raised-button (click)="fileInput.click()">Upload File</button>
+      <input hidden type="file" #fileInput (change)="onFileSelected($event)" />
+
+      <!-- File List Section -->
+      <mat-list *ngIf="files.length > 0">
+        <mat-list-item *ngFor="let file of files">
+          <button mat-raised-button (click)="downloadFile(file)">{{ file }}</button>
+          <button mat-raised-button color="warn" (click)="deleteFile(file)">Delete</button>
+        </mat-list-item>
+      </mat-list>
+    </router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
