@@ -19,13 +19,19 @@ import { HomeComponent } from './home/home.component';
 import { ServiceComponent } from "./service/service.component";
 import { CalculatorComponent } from './calculator/calculator.component';
 import { CommonModule } from '@angular/common';
+import { FileUploadComponent } from './file-upload/file-upload.component';
+import { FileListComponent } from './file-list/file-list.component';
+import { FileShareComponent } from './file-share/file-share.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     ServiceComponent,
-    CalculatorComponent
+    CalculatorComponent,
+    FileUploadComponent,
+    FileListComponent,
+    FileShareComponent
   ],
   imports: [
     RouterModule,

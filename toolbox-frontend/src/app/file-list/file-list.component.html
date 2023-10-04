@@ -1,0 +1,5 @@
+<mat-list>
+  <mat-list-item *ngFor="let file of files">
+    <button mat-raised-button (click)="downloadFile(file)">{{ file }}</button>
+  </mat-list-item>
+</mat-list>

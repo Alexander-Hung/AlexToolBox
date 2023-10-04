@@ -1,0 +1,10 @@
+<!-- Upload Section -->
+<button mat-raised-button (click)="fileInput.click()">Upload File</button>
+<input hidden type="file" #fileInput (change)="onFileSelected($event)" />
+
+<!-- File List Section -->
+<mat-list *ngIf="files.length > 0">
+  <mat-list-item *ngFor="let file of files">
+    <button mat-raised-button (click)="downloadFile(file)">{{ file }}</button>
+  </mat-list-item>
+</mat-list>
