@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
+html, body { height: 60vh; }
 
 button {
   margin-right: 10px;
@@ -13,7 +13,7 @@ mat-form-field {
 }
 
 .sidenav-container {
-  height: 100vh;
+  height: 80vh;
 }
 
 .sidenav {
