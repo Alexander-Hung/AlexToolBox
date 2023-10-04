@@ -4,8 +4,8 @@ import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-Service',
-  templateUrl: './Service.component.html',
-  styleUrls: ['./Service.component.css']
+  templateUrl: './service.component.html',
+  styleUrls: ['./service.component.css']
 })
 export class ServiceComponent implements OnInit {
   tools: string[] = [];
