@@ -9,7 +9,6 @@ import * as math from 'mathjs';
 export class CalculatorComponent implements OnInit {
   result: any = '';
   expression: string = '';
-
   constructor() { }
 
   ngOnInit(): void {

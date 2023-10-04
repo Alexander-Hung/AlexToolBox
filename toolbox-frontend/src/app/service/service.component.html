@@ -21,14 +21,16 @@
 
   <mat-sidenav-content >
     <router-outlet class="context">
-      <button mat-raised-button color="primary" routerLink="/calculator">Calculator</button>
-      <button mat-raised-button color="primary" routerLink="#">Button</button>
-      <button mat-raised-button color="primary" routerLink="#">Button</button>
-      <button mat-raised-button color="primary" routerLink="#">Button</button>
-      <button mat-raised-button color="primary" routerLink="#">Button</button>
-      <button mat-raised-button color="primary" routerLink="#">Button</button>
-      <button mat-raised-button color="primary" routerLink="#">Button</button>
-      <button mat-raised-button color="primary" routerLink="#">Button</button>
+      <mat-grid-list cols="4" rowHeight=fit>
+        <button style="padding: 30px" mat-raised-button color="primary" routerLink="/calculator">Calculator</button>
+        <button style="padding: 30px" mat-raised-button color="primary" routerLink="#">LAN sharing<br>(Developing)</button>
+        <button style="padding: 30px" mat-raised-button color="primary" routerLink="#">Memo<br>(Developing)</button>
+        <button style="padding: 30px" mat-raised-button color="primary" routerLink="#">Email<br>(Developing)</button>
+        <button style="padding: 30px" mat-raised-button color="primary" routerLink="#">File Converter<br>(Developing)</button>
+        <button style="padding: 30px" mat-raised-button color="primary" routerLink="#">Code Compiler<br>(Developing)</button>
+        <button style="padding: 30px" mat-raised-button color="primary" routerLink="#">AI Chat<br>(Developing)</button>
+        <button style="padding: 30px" mat-raised-button color="primary" routerLink="#">Button</button>
+      </mat-grid-list>
 
     </router-outlet>
   </mat-sidenav-content>

@@ -6,6 +6,7 @@ npm install -g express-generator
 
 # Install mathjs for the advanced calculator functionality
 npm install mathjs
+npm install ngx-mathjax
 
 # Install for both front and back end 
 npm install 
