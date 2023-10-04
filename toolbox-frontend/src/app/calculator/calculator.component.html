@@ -1,6 +1,44 @@
-<h2>Advanced Calculator</h2>
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav mode="side" opened class="sidenav">
+    <mat-nav-list>
+      <h1>Tool list</h1>
+      <a mat-list-item routerLink="/home">Home Page</a>
+      <a mat-list-item routerLink="/service">Tool list</a>
+    </mat-nav-list>
+  </mat-sidenav>
 
-<input type="text" [(ngModel)]="expression" placeholder="Enter your expression">
-<button (click)="calculate()">Calculate</button>
+  <mat-sidenav-content>
+    <h1 class="context">Calculator</h1>
+    <router-outlet class="context">
+      <mat-form-field appearance="fill" class="calculator-expression">
+        <textarea matInput matInput placeholder="Enter your expression" [(ngModel)]="expression"></textarea>
+      </mat-form-field>
+    </router-outlet>
+    <router-outlet class="context">
+      <button mat-raised-button color="accent" (click)="calculate()">Calculate</button>
+    </router-outlet>
+    <router-outlet class="context">
+      <h2>Result: {{ result }}</h2>
+    </router-outlet>
 
-<p>Result: {{ result }}</p>
+    <mat-card class="calculator-example">
+      <mat-card-content>
+        <h2>Example:</h2>
+        1.2 / (3.3 + 1.7) <br>
+        <p class="calculator-example-answer">0.24<br></p>
+        a = 5.08 cm + 2 inch<br>
+        <p class="calculator-example-answer">10.16 cm<br></p>
+        a to inch<br>
+        <p class="calculator-example-answer">4 inch<br></p>
+        sin(90 deg)<br>
+        <p class="calculator-example-answer">1<br></p>
+        f(x, y) = x ^ y<br>
+        <p class="calculator-example-answer">f(x, y)<br></p>
+        f(2, 3)<br>
+        <p class="calculator-example-answer">8 <br></p>
+        det([-1, 2; 3, 1]) <br>
+        <p class="calculator-example-answer">-7</p>
+      </mat-card-content>
+    </mat-card>
+  </mat-sidenav-content>
+</mat-sidenav-container>

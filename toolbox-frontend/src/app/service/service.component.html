@@ -1,0 +1,23 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav mode="side" opened class="sidenav">
+    <mat-nav-list>
+      <h1>Tool list</h1>
+      <a mat-list-item routerLink="/home">Home Page</a>
+      <a mat-list-item routerLink="/service">Tool list</a>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content >
+    <router-outlet class="context">
+      <button mat-raised-button color="primary" routerLink="/calculator">Calculator</button>
+      <button mat-raised-button color="primary" routerLink="#">Button</button>
+      <button mat-raised-button color="primary" routerLink="#">Button</button>
+      <button mat-raised-button color="primary" routerLink="#">Button</button>
+      <button mat-raised-button color="primary" routerLink="#">Button</button>
+      <button mat-raised-button color="primary" routerLink="#">Button</button>
+      <button mat-raised-button color="primary" routerLink="#">Button</button>
+      <button mat-raised-button color="primary" routerLink="#">Button</button>
+
+    </router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

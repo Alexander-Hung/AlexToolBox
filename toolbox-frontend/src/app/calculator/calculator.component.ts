@@ -7,8 +7,8 @@ import * as math from 'mathjs';
   styleUrls: ['./calculator.component.css']
 })
 export class CalculatorComponent implements OnInit {
-  expression: string = '';
   result: any = '';
+  expression: string = '';
 
   constructor() { }
 

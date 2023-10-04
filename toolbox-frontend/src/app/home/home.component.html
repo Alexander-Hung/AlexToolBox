@@ -1,5 +1,15 @@
-<h1>Toolbox:</h1>
-<!--suppress AngularUndefinedBinding -->
-<div *ngFor="let tool of tools">
-  <button routerLink="{{ tool }}">{{ tool }}</button>
-</div>
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav mode="side" opened class="sidenav">
+    <mat-nav-list>
+      <h1>Home</h1>
+      <a mat-list-item routerLink="/home">Home Page</a>
+      <a mat-list-item routerLink="/service">Tool list</a>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <router-outlet class="context">
+      <h1>Welcome to Alex's Toolbox</h1>
+    </router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

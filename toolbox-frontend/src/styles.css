@@ -1,1 +1,56 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body {
+  font-family: Roboto, sans-serif;
+  margin-left: 20px;
+}
+
+button {
+  margin-right: 10px;
+  margin-top: 10px;
+}
+
+mat-form-field {
+  display: block;
+  margin-bottom: 20px;
+}
+
+.sidenav-container {
+  height: 100vh;
+}
+
+.sidenav {
+  width: 250px;
+}
+
+mat-nav-list a {
+  display: block;
+  padding: 10px;
+  text-decoration: none;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+.context {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.calculator-expression {
+  width: 400px;
+  margin: 0;
+}
+
+.calculator-example {
+  align-items: center;
+  margin: 20px;
+}
+
+.calculator-example-answer {
+  padding-left: 10px;
+}
+
+mat-sidenav-content {
+  margin-top: 50px;
+}
