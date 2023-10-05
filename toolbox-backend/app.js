@@ -74,7 +74,7 @@ app.listen(3000, () => {
 });
 
 app.use(cors({
-  origin: 'http://0.0.0.0:4200',
+  origin: 'http://localhost:4200',
   allowedHeaders: ['Content-Type', 'Authorization', /* other headers */],
   methods: ['GET', 'POST', 'PUT', 'DELETE']
 }));
