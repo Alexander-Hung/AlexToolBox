@@ -70,7 +70,7 @@ app.delete('/delete/:filename', (req, res) => {
 });
 
 app.listen(3000, () => {
-  console.log('Server started on http://0.0.0.0:3000');
+  console.log('Server started on http://localhost:3000');
 });
 
 app.use(cors({

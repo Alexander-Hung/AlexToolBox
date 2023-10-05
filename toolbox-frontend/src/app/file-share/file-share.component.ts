@@ -16,7 +16,7 @@ export class FileShareComponent implements OnInit {
   }
 
   refreshFileList() {
-    this.http.get<string[]>('http://0.0.0.0:3000/files').subscribe(files => {
+    this.http.get<string[]>('http://localhost:3000/files').subscribe(files => {
       this.files = files;
       this.cd.detectChanges();
 
@@ -27,7 +27,7 @@ export class FileShareComponent implements OnInit {
 
 
   deleteFile(file: string) {
-    this.http.delete(`http://0.0.0.0:3000/delete/${file}`).subscribe(response => {
+    this.http.delete(`http://localhost:3000/delete/${file}`).subscribe(response => {
       console.log('File deleted');
       this.refreshFileList();  // Refresh the file list after deleting a file
     }, error => {
@@ -39,7 +39,7 @@ export class FileShareComponent implements OnInit {
     if (file) {
       const formData = new FormData();
       formData.append('file', file, file.name);
-      this.http.post('http://0.0.0.0:3000/upload', formData).subscribe(response => {
+      this.http.post('http://localhost:3000/upload', formData).subscribe(response => {
         console.log('Upload complete');
         this.refreshFileList();  // Make sure this line is here
       });
@@ -48,6 +48,6 @@ export class FileShareComponent implements OnInit {
 
 
   downloadFile(file: string) {
-    window.location.href = `http://0.0.0.0:3000/download/${file}`;
+    window.location.href = `http://localhost:3000/download/${file}`;
   }
 }
