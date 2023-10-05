@@ -6,8 +6,8 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
-router.get('/tools', function(req, res, next) {
-  res.json({ tools: ["calculator"] });
+router.get('/files', function(req, res, next) {
+  res.json({ file: ["calculator"] });
 });
 
 module.exports = router;
