@@ -16,7 +16,7 @@ export class FileShareComponent implements OnInit {
   }
 
   refreshFileList() {
-    this.http.get<string[]>('http://localhost:3000/files').subscribe(files => {
+    this.http.get<string[]>('http://192.168.50.13:3000/files').subscribe(files => {
       this.files = files;
       this.cd.detectChanges();
 
