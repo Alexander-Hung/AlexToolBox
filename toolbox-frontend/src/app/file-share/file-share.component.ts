@@ -27,7 +27,7 @@ export class FileShareComponent implements OnInit {
 
 
   deleteFile(file: string) {
-    this.http.delete(`http://localhost:3000/delete/${file}`).subscribe(response => {
+    this.http.delete(`http://192.168.50.13:3000/delete/${file}`).subscribe(response => {
       console.log('File deleted');
       this.refreshFileList();  // Refresh the file list after deleting a file
     }, error => {
@@ -39,7 +39,7 @@ export class FileShareComponent implements OnInit {
     if (file) {
       const formData = new FormData();
       formData.append('file', file, file.name);
-      this.http.post('http://localhost:3000/upload', formData).subscribe(response => {
+      this.http.post('http://192.168.50.13:3000/upload', formData).subscribe(response => {
         console.log('Upload complete');
         this.refreshFileList();  // Make sure this line is here
       });
