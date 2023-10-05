@@ -11,6 +11,10 @@ var usersRouter = require('./routes/users');
 var app = express();
 const port = 3000;
 var cors = require('cors');
+const corsOptions = {
+  origin: 'http://76.93.217.172:4200',
+  optionsSuccessStatus: 200
+};
 
 const storage = multer.diskStorage({
   destination: './uploads/',
@@ -85,7 +89,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
