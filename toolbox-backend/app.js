@@ -73,9 +73,7 @@ app.delete('/delete/:filename', (req, res) => {
   });
 });
 
-app.listen(port, '0.0.0.0', () => {
-  console.log(`Server started on port ${port}`);
-});
+app.listen(3000, '127.0.0.1',onServerListening);
 
 app.use(cors({
   origin: 'http://http://76.93.217.172:4200',
@@ -89,7 +87,6 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use(cors(corsOptions));
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
