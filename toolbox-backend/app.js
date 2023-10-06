@@ -9,12 +9,12 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 var app = express();
-const port = 3000;
+const port = 5000;
 var cors = require('cors');
 
 app.use(cors());
 app.use(cors({
-  origin: 'http://http://76.93.217.172:4200',
+  origin: 'http://76.93.217.172:4200',
   allowedHeaders: ['Content-Type', 'Authorization', /* other headers */],
   methods: ['GET', 'POST', 'PUT', 'DELETE']
 }));
@@ -103,7 +103,7 @@ app.use((req, res, next) => {
 });
 
 app.listen(port, '0.0.0.0', () => {
-  console.log(`Server started on http://0.0.0.0:${port}`);
+  console.log(`Server started on http://192.168.50.223:${port}`);
 });
 
 app.use(logger('dev'));
