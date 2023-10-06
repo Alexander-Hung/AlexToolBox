@@ -9,12 +9,12 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 var app = express();
-const port = 3000;
+const port = 5000;
 var cors = require('cors');
 
 app.use(cors());
 app.use(cors({
-  origin: 'http://http://76.93.217.172:4200',
+  origin: 'http://76.93.217.172:4200',
   allowedHeaders: ['Content-Type', 'Authorization', /* other headers */],
   methods: ['GET', 'POST', 'PUT', 'DELETE']
 }));
