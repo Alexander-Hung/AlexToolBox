@@ -73,8 +73,6 @@ app.delete('/delete/:filename', (req, res) => {
   });
 });
 
-app.listen(3000, '192.168.50.13');
-
 app.use(cors({
   origin: 'http://http://76.93.217.172:4200',
   allowedHeaders: ['Content-Type', 'Authorization', /* other headers */],
@@ -85,6 +83,10 @@ app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*"); // Allow any origin
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept"); // Allow these headers
   next();
+});
+
+app.listen(port, '0.0.0.0', () => {
+  console.log(`Server started on http://0.0.0.0:${port}`);
 });
 
 app.use(logger('dev'));
