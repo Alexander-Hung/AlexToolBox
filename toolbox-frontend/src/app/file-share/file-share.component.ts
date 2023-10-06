@@ -54,6 +54,7 @@ export class FileShareComponent implements OnInit {
           console.log('Upload complete');
           this.uploadProgress = 0; // Reset progress
           this.refreshFileList();
+          window.location.reload();
         }
       });
     }
