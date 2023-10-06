@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { CalculatorComponent } from './calculator/calculator.component';
 import { ServiceComponent } from "./service/service.component";
-import { FileListComponent } from './file-list/file-list.component';
+import {FileShareComponent} from "./file-share/file-share.component";
 
 
 const routes: Routes = [
