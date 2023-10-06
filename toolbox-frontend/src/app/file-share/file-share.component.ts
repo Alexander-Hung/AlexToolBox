@@ -20,7 +20,7 @@ export class FileShareComponent implements OnInit {
 
   promptPassword() {
     const password = prompt('Enter password to unlock:');
-    if (password === 'yourPasswordHere') {  // Replace 'yourPasswordHere' with your desired password
+    if (password === 'test') {  // Replace 'yourPasswordHere' with your desired password
       this.isLocked = false;
     } else {
       alert('Incorrect password!');
