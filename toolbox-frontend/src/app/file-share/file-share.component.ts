@@ -9,12 +9,22 @@ import { environment } from '../environment/environment'
 })
 export class FileShareComponent implements OnInit {
   files: string[] = [];
+  isLocked: boolean = true;
   uploadProgress: number = 0;
 
   constructor(private http: HttpClient, private cd: ChangeDetectorRef) { }
 
   ngOnInit(): void {
     this.refreshFileList();
+  }
+
+  promptPassword() {
+    const password = prompt('Enter password to unlock:');
+    if (password === 'yourPasswordHere') {  // Replace 'yourPasswordHere' with your desired password
+      this.isLocked = false;
+    } else {
+      alert('Incorrect password!');
+    }
   }
 
   refreshFileList() {
