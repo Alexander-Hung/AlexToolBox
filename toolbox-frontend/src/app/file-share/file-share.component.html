@@ -33,6 +33,10 @@
           <button mat-raised-button color="warn" (click)="deleteFile(file)">Delete</button>
         </mat-list-item>
       </mat-list>
+
     </router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>
+
+<!-- Progress Bar -->
+<mat-progress-bar mode="determinate" [value]="uploadProgress"></mat-progress-bar>

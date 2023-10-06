@@ -1,5 +1,5 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpEventType } from '@angular/common/http';
 
 @Component({
   selector: 'app-file-share',
@@ -8,6 +8,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class FileShareComponent implements OnInit {
   files: string[] = [];
+  uploadProgress: number = 0;
 
   constructor(private http: HttpClient, private cd: ChangeDetectorRef) { }
 
@@ -39,9 +40,20 @@ export class FileShareComponent implements OnInit {
     if (file) {
       const formData = new FormData();
       formData.append('file', file, file.name);
-      this.http.post('http://192.168.50.13:3000/upload', formData).subscribe(response => {
-        console.log('Upload complete');
-        this.refreshFileList();  // Make sure this line is here
+
+      this.http.post('http://192.168.50.13:3000/upload', formData, {
+        reportProgress: true,
+        observe: 'events'
+      }).subscribe(event => {
+        if (event.type === HttpEventType.UploadProgress) {
+          if (event.total) {
+            this.uploadProgress = Math.round(100 * event.loaded / event.total);
+          }
+        } else if (event.type === HttpEventType.Response) {
+          console.log('Upload complete');
+          this.uploadProgress = 0; // Reset progress
+          this.refreshFileList();
+        }
       });
     }
   }

@@ -22,6 +22,7 @@ import { CommonModule } from '@angular/common';
 import { FileUploadComponent } from './file-upload/file-upload.component';
 import { FileListComponent } from './file-list/file-list.component';
 import { FileShareComponent } from './file-share/file-share.component';
+import {MatProgressBarModule} from "@angular/material/progress-bar";
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { FileShareComponent } from './file-share/file-share.component';
     MatToolbarModule,
     MatGridListModule,
     MatFormFieldModule,
+    MatProgressBarModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -11,6 +11,14 @@ var usersRouter = require('./routes/users');
 var app = express();
 const port = 3000;
 var cors = require('cors');
+
+app.use(cors());
+app.use(cors({
+  origin: 'http://http://76.93.217.172:4200',
+  allowedHeaders: ['Content-Type', 'Authorization', /* other headers */],
+  methods: ['GET', 'POST', 'PUT', 'DELETE']
+}));
+
 const corsOptions = {
   origin: 'http://76.93.217.172:4200',
   optionsSuccessStatus: 200
@@ -24,7 +32,6 @@ const storage = multer.diskStorage({
 });
 
 const upload = multer({ storage: storage });
-
 const directoryPath = path.join(__dirname, './uploads/'); // replace 'YOUR_DIRECTORY_NAME' with the actual directory
 
 fs.readdir(directoryPath, function (err, files) {
@@ -36,31 +43,45 @@ fs.readdir(directoryPath, function (err, files) {
     console.log(file);
   });
 });
+
+
+// Upload Endpoint
 app.post('/upload', upload.single('file'), (req, res) => {
   console.log("File upload endpoint hit!");
   res.send('File uploaded!');
 });
 
+// Download Endpoint
 app.get('/download/:filename', (req, res) => {
   const file = path.join(__dirname, 'uploads', req.params.filename);
+
+  if (!fs.existsSync(file)) {
+    console.error('File not found:', req.params.filename);
+    return res.status(404).send('File not found');
+  }
+
   res.download(file);
 });
 
-app.use(cors()); // To solve CORS issues
-
+// File Listing Endpoint
 app.get('/files', (req, res) => {
+  const directoryPath = path.join(__dirname, 'uploads');
+
   fs.readdir(directoryPath, (err, files) => {
     if (err) {
+      console.error('Error fetching file list:', err);
       return res.status(500).send('Unable to scan directory: ' + err);
     }
     res.json(files);
   });
 });
 
+// Delete Endpoint
 app.delete('/delete/:filename', (req, res) => {
   const file = path.join(__dirname, 'uploads', req.params.filename);
 
   if (!fs.existsSync(file)) {
+    console.error('File not found:', req.params.filename);
     return res.status(404).send('File not found');
   }
 
@@ -73,11 +94,7 @@ app.delete('/delete/:filename', (req, res) => {
   });
 });
 
-app.use(cors({
-  origin: 'http://http://76.93.217.172:4200',
-  allowedHeaders: ['Content-Type', 'Authorization', /* other headers */],
-  methods: ['GET', 'POST', 'PUT', 'DELETE']
-}));
+
 
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*"); // Allow any origin
