@@ -1,5 +1,6 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { HttpClient, HttpEventType } from '@angular/common/http';
+import { environment } from '../environment/environment'
 
 @Component({
   selector: 'app-file-share',
@@ -17,7 +18,7 @@ export class FileShareComponent implements OnInit {
   }
 
   refreshFileList() {
-    this.http.get<string[]>('http://192.168.50.13:3000/files').subscribe(files => {
+    this.http.get<string[]>(`${environment.apiBaseUrl}/files`).subscribe(files => {
       this.files = files;
       this.cd.detectChanges();
 
@@ -28,7 +29,7 @@ export class FileShareComponent implements OnInit {
 
 
   deleteFile(file: string) {
-    this.http.delete(`http://192.168.50.13:3000/delete/${file}`).subscribe(response => {
+    this.http.delete(`${environment.apiBaseUrl}/delete/${file}`).subscribe(response => {
       console.log('File deleted');
       this.refreshFileList();  // Refresh the file list after deleting a file
     }, error => {
@@ -41,7 +42,7 @@ export class FileShareComponent implements OnInit {
       const formData = new FormData();
       formData.append('file', file, file.name);
 
-      this.http.post('http://192.168.50.13:3000/upload', formData, {
+      this.http.post(`${environment.apiBaseUrl}/upload`, formData, {
         reportProgress: true,
         observe: 'events'
       }).subscribe(event => {
@@ -60,6 +61,6 @@ export class FileShareComponent implements OnInit {
 
 
   downloadFile(file: string) {
-    window.location.href = `http://192.168.50.13:3000/download/${file}`;
+    window.location.href = `${environment.apiBaseUrl}/download/${file}`;
   }
 }
