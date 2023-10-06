@@ -73,7 +73,7 @@ app.delete('/delete/:filename', (req, res) => {
   });
 });
 
-app.listen(3000, '127.0.0.1',onServerListening);
+app.listen(3000, '76.93.217.172',onServerListening);
 
 app.use(cors({
   origin: 'http://http://76.93.217.172:4200',
