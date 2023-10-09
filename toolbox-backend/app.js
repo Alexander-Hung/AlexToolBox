@@ -2,8 +2,6 @@ const express = require('express');
 const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
-const bodyParser = require('body-parser');
-const { exec } = require('child_process');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
@@ -20,9 +18,6 @@ app.use(cors({
   allowedHeaders: ['Content-Type', 'Authorization', /* other headers */],
   methods: ['GET', 'POST', 'PUT', 'DELETE']
 }));
-
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
 
 const corsOptions = {
   origin: 'http://76.93.217.172:4200',
@@ -98,35 +93,6 @@ app.delete('/delete/:filename', (req, res) => {
     res.send('File deleted successfully');
   });
 });
-
-app.post('/compile', (req, res) => {
-  console.log(req.body);  // Log the received body
-  const code = req.body.code;
-
-  const dir = './temp';
-  if (!fs.existsSync(dir)){
-    fs.mkdirSync(dir);
-  }
-
-  // Save the code to a temporary .java file
-  const filename = 'TempClass';
-  fs.writeFileSync(path.join(dir, `${filename}.java`), code);
-
-  // Compile and run the Java code
-  exec(`javac ./temp/${filename}.java && java -cp ./temp ${filename}`, (error, stdout, stderr) => {
-    if (error) {
-      return res.json({
-        success: false,
-        output: stderr,
-      });
-    }
-    res.json({
-      success: true,
-      output: stdout,
-    });
-  });
-});
-
 
 
 
