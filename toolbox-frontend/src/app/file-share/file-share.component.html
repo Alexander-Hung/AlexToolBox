@@ -38,15 +38,12 @@
         <input hidden type="file" #fileInput (change)="onFileSelected($event)" />
 
         <!-- File List Section -->
-        <a href="javascript: reload()">Click to Reload</a>
-        <div id="filelist">
-          <mat-list *ngIf="files.length > 0" >
-            <mat-list-item *ngFor="let file of files">
-              <button mat-raised-button (click)="downloadFile(file)">{{ file }}</button>
-              <button mat-raised-button color="warn" (click)="deleteFile(file)">Delete</button>
-            </mat-list-item>
-          </mat-list>
-        </div>
+        <mat-list *ngIf="files.length > 0">
+          <mat-list-item *ngFor="let file of files">
+            <button mat-raised-button (click)="downloadFile(file)">{{ file }}</button>
+            <button mat-raised-button color="warn" (click)="deleteFile(file)">Delete</button>
+          </mat-list-item>
+        </mat-list>
 
       </router-outlet>
 
