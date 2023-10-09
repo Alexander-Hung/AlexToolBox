@@ -1,4 +1,3 @@
-
 <mat-toolbar color="primary">
   <router-outlet>
     <mat-list-item>
@@ -31,7 +30,19 @@
 
 
     <div *ngIf="!isLocked">
-      <div style="display: flex">
+      <mat-expansion-panel (opened)="panelOpenState = true"
+                           (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Java Compiler
+          </mat-panel-title>
+          <mat-panel-description>
+            <div *ngIf="output">
+              <pre>Output:{{ output }}</pre>
+            </div>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <div style="display: flex">
         <textarea [(ngModel)]="code" style="width: 50%; height: 800px"
                   placeholder="class TempClass {
     public static void main(String[] args) {
@@ -41,17 +52,18 @@
 }">
 
         </textarea>
-        <div style="margin-left: 20px">
-          <h3>Output:</h3>
-          <div *ngIf="output">
-            <pre>{{ output }}</pre>
+          <div style="margin-left: 20px">
+            <h3>Output:</h3>
+            <div *ngIf="output">
+              <pre>{{ output }}</pre>
+            </div>
           </div>
         </div>
-      </div>
-      <div style="text-align: center; margin-top: 50px">
-        <p>**Please run you class name as TempClass to avoid Error**</p>
-        <button mat-raised-button (click)="compileCode()">Compile & Run</button>
-      </div>
+        <div style="text-align: center; margin-top: 50px">
+          <p>**Please run you class name as TempClass to avoid Error**</p>
+          <button mat-raised-button (click)="compileCode()">Compile & Run</button>
+        </div>
+      </mat-expansion-panel>
     </div>
   </mat-sidenav-content>
 </mat-sidenav-container>

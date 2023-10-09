@@ -11,6 +11,7 @@ export class CompilersComponent {
   code: string = '';
   output: string = '';
   isLocked: boolean = true;
+  panelOpenState = false;
 
   constructor(private http: HttpClient) {}
 

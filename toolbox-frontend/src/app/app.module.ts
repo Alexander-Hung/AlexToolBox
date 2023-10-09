@@ -24,6 +24,7 @@ import { FileListComponent } from './file-list/file-list.component';
 import { FileShareComponent } from './file-share/file-share.component';
 import {MatProgressBarModule} from "@angular/material/progress-bar";
 import { CompilersComponent } from './compilers/compilers.component';
+import {MatExpansionModule} from "@angular/material/expansion";
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { CompilersComponent } from './compilers/compilers.component';
     MatGridListModule,
     MatFormFieldModule,
     MatProgressBarModule,
+    MatExpansionModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
