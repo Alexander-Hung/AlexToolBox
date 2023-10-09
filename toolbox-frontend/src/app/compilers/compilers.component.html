@@ -1,0 +1,6 @@
+<textarea [(ngModel)]="code" placeholder="Enter your Java code here..."></textarea>
+<button (click)="compileCode()">Compile & Run</button>
+<div *ngIf="output">
+  <h3>Output:</h3>
+  <pre>{{ output }}</pre>
+</div>

@@ -23,6 +23,7 @@ import { FileUploadComponent } from './file-upload/file-upload.component';
 import { FileListComponent } from './file-list/file-list.component';
 import { FileShareComponent } from './file-share/file-share.component';
 import {MatProgressBarModule} from "@angular/material/progress-bar";
+import { CompilersComponent } from './compilers/compilers.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import {MatProgressBarModule} from "@angular/material/progress-bar";
     CalculatorComponent,
     FileUploadComponent,
     FileListComponent,
-    FileShareComponent
+    FileShareComponent,
+    CompilersComponent
   ],
   imports: [
     RouterModule,

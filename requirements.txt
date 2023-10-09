@@ -10,6 +10,7 @@ npm install mathjs
 # Backend
 npm install cors
 npm install express multer
+npm install child_process
 
 # Install for both front and back end 
 npm install 
