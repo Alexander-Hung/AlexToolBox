@@ -21,17 +21,21 @@
 
   <mat-sidenav-content >
     <router-outlet class="context">
-      <mat-grid-list cols="4" rowHeight=fit>
+      <mat-grid-list cols="4" rowHeight=fit style="text-align: center">
+        <h2>Tools:</h2>
         <button style="padding: 30px" mat-raised-button color="primary" routerLink="/calculator">Calculator</button>
         <button style="padding: 30px" mat-raised-button color="primary" routerLink="/share">File Share</button>
+        <button style="padding: 30px" mat-raised-button color="primary" routerLink="/compilers">Code Compiler<br></button>
+      </mat-grid-list>
+    </router-outlet>
+    <router-outlet class="context" style="margin-top: 100px; text-align: center">
+      <mat-grid-list cols="4" rowHeight=fit>
+        <h2>Developing:</h2>
         <button style="padding: 30px" mat-raised-button color="primary" routerLink="#">Memo<br>(Developing)</button>
         <button style="padding: 30px" mat-raised-button color="primary" routerLink="#">Email<br>(Developing)</button>
         <button style="padding: 30px" mat-raised-button color="primary" routerLink="#">File Converter<br>(Developing)</button>
-        <button style="padding: 30px" mat-raised-button color="primary" routerLink="/compilers">Code Compiler<br></button>
         <button style="padding: 30px" mat-raised-button color="primary" routerLink="#">AI Chat<br>(Developing)</button>
-        <button style="padding: 30px" mat-raised-button color="primary" routerLink="#">Button</button>
       </mat-grid-list>
-
     </router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>
