@@ -4,6 +4,7 @@ import { HomeComponent } from './home/home.component';
 import { CalculatorComponent } from './calculator/calculator.component';
 import { ServiceComponent } from "./service/service.component";
 import {FileShareComponent} from "./file-share/file-share.component";
+import {CompilersComponent} from "./compilers/compilers.component";
 
 
 const routes: Routes = [
@@ -12,6 +13,7 @@ const routes: Routes = [
   { path: 'service', component: ServiceComponent },
   { path: 'calculator', component: CalculatorComponent },
   { path: 'share', component: FileShareComponent },
+  { path: 'compilers', component: CompilersComponent },
 ];
 
 @NgModule({
