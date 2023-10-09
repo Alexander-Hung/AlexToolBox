@@ -30,6 +30,7 @@
 
 
     <div *ngIf="!isLocked">
+      <!-- Java -->
       <mat-expansion-panel (opened)="panelOpenState = true"
                            (closed)="panelOpenState = false">
         <mat-expansion-panel-header>
@@ -63,6 +64,117 @@
           <p>**Please run you class name as TempClass to avoid Error**</p>
           <button mat-raised-button (click)="compileCode()">Compile & Run</button>
         </div>
+      </mat-expansion-panel>
+
+      <!-- python -->
+      <mat-expansion-panel (opened)="panelOpenState = true"
+                           (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Python Compiler(Developing)
+          </mat-panel-title>
+          <mat-panel-description>
+            <div *ngIf="output">
+              <pre>Output:{{ output }}</pre>
+            </div>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <!-- Developing
+        <div style="display: flex">
+        <<textarea [(ngModel)]="code" style="width: 50%; height: 800px"
+                  placeholder="class TempClass {
+    public static void main(String[] args) {
+
+
+    }
+}">
+
+        </textarea>
+          <div style="margin-left: 20px">
+            <h3>Output:</h3>
+            <div *ngIf="output">
+              <pre>{{ output }}</pre>
+            </div>
+          </div>
+        </div>
+        <div style="text-align: center; margin-top: 50px">
+          <p>**Please run you class name as TempClass to avoid Error**</p>
+          <button mat-raised-button (click)="compileCode()">Compile & Run</button>
+        </div>-->
+      </mat-expansion-panel>
+
+      <!-- C -->
+      <mat-expansion-panel (opened)="panelOpenState = true"
+                           (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            C Compiler(Developing)
+          </mat-panel-title>
+          <mat-panel-description>
+            <div *ngIf="output">
+              <pre>Output:{{ output }}</pre>
+            </div>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <!-- Developing
+        <div style="display: flex">
+        <<textarea [(ngModel)]="code" style="width: 50%; height: 800px"
+                  placeholder="class TempClass {
+    public static void main(String[] args) {
+
+
+    }
+}">
+
+        </textarea>
+          <div style="margin-left: 20px">
+            <h3>Output:</h3>
+            <div *ngIf="output">
+              <pre>{{ output }}</pre>
+            </div>
+          </div>
+        </div>
+        <div style="text-align: center; margin-top: 50px">
+          <p>**Please run you class name as TempClass to avoid Error**</p>
+          <button mat-raised-button (click)="compileCode()">Compile & Run</button>
+        </div>-->
+      </mat-expansion-panel>
+
+      <!-- C++ -->
+      <mat-expansion-panel (opened)="panelOpenState = true"
+                           (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            C++ Compiler(Developing)
+          </mat-panel-title>
+          <mat-panel-description>
+            <div *ngIf="output">
+              <pre>Output:{{ output }}</pre>
+            </div>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <!-- Developing
+        <div style="display: flex">
+        <<textarea [(ngModel)]="code" style="width: 50%; height: 800px"
+                  placeholder="class TempClass {
+    public static void main(String[] args) {
+
+
+    }
+}">
+
+        </textarea>
+          <div style="margin-left: 20px">
+            <h3>Output:</h3>
+            <div *ngIf="output">
+              <pre>{{ output }}</pre>
+            </div>
+          </div>
+        </div>
+        <div style="text-align: center; margin-top: 50px">
+          <p>**Please run you class name as TempClass to avoid Error**</p>
+          <button mat-raised-button (click)="compileCode()">Compile & Run</button>
+        </div>-->
       </mat-expansion-panel>
     </div>
   </mat-sidenav-content>
