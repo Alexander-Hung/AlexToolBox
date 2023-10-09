@@ -9,7 +9,7 @@
   </mat-toolbar>
 
   <router-outlet>
-    <h1 style="margin-top: 16px">LAN sharing: <span style="font-size: 17px">File sharing with web, only works in LAN</span></h1>
+    <h1 style="margin-top: 16px">File Shares: <span style="font-size: 17px">File sharing in web server that allows you download your files any devices</span></h1>
   </router-outlet>
 
   <mat-sidenav-container class="sidenav-container">
@@ -21,8 +21,12 @@
     </mat-sidenav>
 
     <mat-sidenav-content>
-      <div *ngIf="isLocked" style="align-content: center; align-items: center">
-        <button mat-raised-button (click)="promptPassword()">Unlock File Share</button>
+      <div style="text-align: center">
+        <p>Please note: Files upload publicly on server can be very dangerous as it can expose system to various security risks.<br>
+          To ensure the security, this service will be locked</p>
+        <div *ngIf="isLocked">
+          <button mat-raised-button (click)="promptPassword()">Unlock File Share</button>
+        </div>
       </div>
 
       <div *ngIf="!isLocked">
@@ -30,7 +34,7 @@
       <router-outlet class="context"><h4>**Auto refresh may not working, please refresh list by yourself**</h4></router-outlet>
       <router-outlet class="context">
         <!-- Upload Section -->
-        <button style="margin-right: 300px" mat-raised-button (click)="fileInput.click()">Upload File</button>
+        <button style="margin-right: 300px; margin-bottom: 100px" mat-raised-button (click)="fileInput.click()">Upload File</button>
         <input hidden type="file" #fileInput (change)="onFileSelected($event)" />
 
         <!-- File List Section -->
@@ -43,13 +47,13 @@
 
       </router-outlet>
 
-      <!-- Progress Bar -->
-      <mat-progress-bar mode="determinate" [value]="uploadProgress"></mat-progress-bar>
-
 </div>
     </mat-sidenav-content>
   </mat-sidenav-container>
-
+  <!-- Progress Bar -->
+  <div style="margin-left: 40%">
+    <mat-progress-bar style="width: 500px;" mode="determinate" [value]="uploadProgress"></mat-progress-bar>
+  </div>
 
 
 

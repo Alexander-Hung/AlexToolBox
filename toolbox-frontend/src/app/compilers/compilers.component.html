@@ -1,13 +1,54 @@
-<textarea [(ngModel)]="code" style="width: 100%; height: 800px">
-  // keep "class TempClass" 
-  class TempClass {
+
+<mat-toolbar color="primary">
+  <router-outlet>
+    <mat-list-item>
+      <span style="font-size: 40px">Alex's Toolbox</span>
+      <span class="spacer"></span>
+    </mat-list-item>
+  </router-outlet>
+</mat-toolbar>
+
+<router-outlet>
+  <h1 style="margin-top: 16px">Code Compiler: <span style="font-size: 17px">Code Compiler allows you to Write code and run it online(Java only for now)</span></h1>
+</router-outlet>
+
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav mode="side" opened class="sidenav">
+    <mat-nav-list class="mat-nav-list-padding">
+      <a mat-list-item routerLink="/home">Home Page</a>
+      <a mat-list-item routerLink="/service">Tool list</a>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <div style="text-align: center">
+      <p>Please note: Running arbitrary code on server can be very dangerous as it can expose system to various security risks.<br>
+        To ensure the security, this service will be locked</p>
+      <div *ngIf="isLocked">
+        <button mat-raised-button (click)="promptPassword()">Unlock Code Compiler</button>
+      </div>
+    </div>
+
+
+    <div *ngIf="!isLocked">
+
+      <textarea [(ngModel)]="code" style="width: 100%; height: 800px" placeholder="class TempClass {
     public static void main(String[] args) {
 
 
     }
-}</textarea>
-<button (click)="compileCode()">Compile & Run</button>
-<div *ngIf="output">
-  <h3>Output:</h3>
-  <pre>{{ output }}</pre>
-</div>
+}">
+  </textarea>
+      <div style="text-align: center">
+        <p>**Please run you class name as TempClass to avoid Error**</p>
+        <button (click)="compileCode()">Compile & Run</button>
+      </div>
+      <div *ngIf="output">
+        <h3>Output:</h3>
+        <pre>{{ output }}</pre>
+      </div>
+
+
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

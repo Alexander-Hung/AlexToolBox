@@ -10,8 +10,18 @@ import { environment } from '../environment/environment'
 export class CompilersComponent {
   code: string = '';
   output: string = '';
+  isLocked: boolean = true;
 
   constructor(private http: HttpClient) {}
+
+  promptPassword() {
+    const password = prompt('Enter password to unlock:');
+    if (password === 'test') {  // Replace 'yourPasswordHere' with your desired password
+      this.isLocked = false;
+    } else {
+      alert('Incorrect password!');
+    }
+  }
 
   compileCode() {
     this.http.post(`${environment.apiBaseUrl}/compile`, { code: this.code }).subscribe((response: any) => {
