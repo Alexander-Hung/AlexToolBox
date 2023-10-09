@@ -37,6 +37,12 @@ export class FileShareComponent implements OnInit {
     });
   }
 
+  reloadFileList() {
+    const iframe: any = document.getElementById("filelist");
+    if (iframe && iframe.contentWindow) {
+      iframe.contentWindow.location.reload(true);
+    }
+  }
 
   deleteFile(file: string) {
     this.http.delete(`${environment.apiBaseUrl}/delete/${file}`).subscribe(response => {
