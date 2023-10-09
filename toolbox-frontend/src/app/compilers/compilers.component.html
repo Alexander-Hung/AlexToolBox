@@ -1,4 +1,11 @@
-<textarea [(ngModel)]="code" placeholder="Enter your Java code here..."></textarea>
+<textarea [(ngModel)]="code" style="width: 100%; height: 800px">
+  // keep "class TempClass" 
+  class TempClass {
+    public static void main(String[] args) {
+
+
+    }
+}</textarea>
 <button (click)="compileCode()">Compile & Run</button>
 <div *ngIf="output">
   <h3>Output:</h3>
