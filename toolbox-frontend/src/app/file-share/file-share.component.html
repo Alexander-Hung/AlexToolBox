@@ -1,9 +1,3 @@
-<div *ngIf="isLocked">
-  <button mat-raised-button (click)="promptPassword()">Unlock File Share</button>
-</div>
-
-<div *ngIf="!isLocked">
-
   <mat-toolbar color="primary">
     <router-outlet>
       <mat-list-item>
@@ -26,6 +20,9 @@
     </mat-sidenav>
 
     <mat-sidenav-content>
+      <div *ngIf="isLocked">
+        <button mat-raised-button (click)="promptPassword()">Unlock File Share</button>
+      </div>
       <router-outlet class="context"><h4>**Auto refresh may not working, please refresh list by yourself**</h4></router-outlet>
       <router-outlet class="context">
         <!-- Upload Section -->
@@ -41,6 +38,8 @@
         </mat-list>
 
       </router-outlet>
+      <div *ngIf="!isLocked">
+
     </mat-sidenav-content>
   </mat-sidenav-container>
 
