@@ -7,7 +7,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/tools', function(req, res, next) {
-  res.json({ tools: ["calculator"] });
+  res.json({ tools: ["calculator", "file-share", "compile"] });
 });
 
 module.exports = router;
