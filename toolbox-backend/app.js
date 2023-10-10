@@ -7,14 +7,16 @@ var compileRouter = require('./routes/compile');
 var fileShareRouter = require('./routes/file-share');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var env = require('./routes/environment.js');
 
+const IP = env.IP;
 var app = express();
 const port = 5000;
 var cors = require('cors');
 
 app.use(cors());
 app.use(cors({
-  origin: `${environment.apiOutUrl}`,
+  origin: IP,
   allowedHeaders: ['Content-Type', 'Authorization', /* other headers */],
   methods: ['GET', 'POST', 'PUT', 'DELETE']
 }));
@@ -27,7 +29,7 @@ app.use((req, res, next) => {
 });
 
 app.listen(port, '0.0.0.0', () => {
-  console.log(`Server started on http://192.168.50.223:${port}`);
+  console.log(`Server started on ${IP}`);
 });
 
 app.use(logger('dev'));

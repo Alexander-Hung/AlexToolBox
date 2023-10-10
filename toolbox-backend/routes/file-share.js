@@ -1,30 +1,22 @@
-import environment from '../environment/environment'
 var express = require('express');
 var router = express.Router();
 
 const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
+const env = require('./environment.js');
 
-var cors = require('cors');
-
-router.use(cors());
-router.use(cors({
-  origin: `${environment.apiOutUrl}`,
-  allowedHeaders: ['Content-Type', 'Authorization', /* other headers */],
-  methods: ['GET', 'POST', 'PUT', 'DELETE']
-}));
-
+const UPLOAD_PATH = env.UPLOAD_PATH;
 
 const storage = multer.diskStorage({
-  destination: '../uploads/',
+  destination: UPLOAD_PATH,
   filename: function(req, file, cb) {
     cb(null, file.originalname);
   }
 });
 
 const upload = multer({ storage: storage });
-const directoryPath = path.join(__dirname, '../uploads/'); // replace 'YOUR_DIRECTORY_NAME' with the actual directory
+const directoryPath = path.join(__dirname, UPLOAD_PATH); // replace 'YOUR_DIRECTORY_NAME' with the actual directory
 
 fs.readdir(directoryPath, function (err, files) {
   if (err) {
