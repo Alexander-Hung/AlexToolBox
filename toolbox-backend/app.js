@@ -35,7 +35,7 @@ const upload = multer({ storage: storage });
 
 app.post('/upload', upload.single('file'), (req, res) => {
   console.log("File upload endpoint hit!");
-  res.send('File uploaded!');
+  res.json({ message: 'File uploaded!' });
 });
 
 app.get('/download/:filename', (req, res) => {

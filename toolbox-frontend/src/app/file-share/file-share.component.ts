@@ -61,10 +61,9 @@ export class FileShareComponent implements OnInit {
             this.uploadProgress = Math.round(100 * event.loaded / event.total);
           }
         } else if (event.type === HttpEventType.Response) {
-          console.log('Upload complete');
+          console.log('Upload response:', event.body.message);  // Handle the JSON response
           this.uploadProgress = 0; // Reset progress
           this.refreshFileList();
-          window.location.reload();
         }
       });
     }
