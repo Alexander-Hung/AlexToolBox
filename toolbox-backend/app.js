@@ -17,7 +17,7 @@ var cors = require('cors');
 
 app.use(cors());
 app.use(cors({
-  origin: IP,
+  origin: `${IP}`,
   allowedHeaders: ['Content-Type', 'Authorization', /* other headers */],
   methods: ['GET', 'POST', 'PUT', 'DELETE']
 }));
