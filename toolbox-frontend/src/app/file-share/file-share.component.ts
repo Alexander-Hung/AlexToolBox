@@ -2,6 +2,10 @@ import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { HttpClient, HttpEventType } from '@angular/common/http';
 import { environment } from '../environment/environment'
 
+interface UploadResponse {
+  message: string;
+}
+
 @Component({
   selector: 'app-file-share',
   templateUrl: './file-share.component.html',
@@ -61,10 +65,7 @@ export class FileShareComponent implements OnInit {
             this.uploadProgress = Math.round(100 * event.loaded / event.total);
           }
         } else if (event.type === HttpEventType.Response) {
-          console.log('Upload response:', event.body?.message);
-          if (event.body && 'message' in event.body) {
-            console.log('Upload response:', event.body.message);
-          }
+          console.log('Upload response:', (event.body as UploadResponse).message);
           this.uploadProgress = 0; // Reset progress
           this.refreshFileList();
         }
