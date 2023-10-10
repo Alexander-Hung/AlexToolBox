@@ -6,8 +6,8 @@ const router = express.Router();
 var cors = require('cors');
 
 // Middleware
-app.use(cors());
-app.use(cors({
+router.use(cors());
+router.use(cors({
   origin: 'http://76.93.217.172:4200',
   allowedHeaders: ['Content-Type', 'Authorization'],
   methods: ['GET', 'POST', 'PUT', 'DELETE']
