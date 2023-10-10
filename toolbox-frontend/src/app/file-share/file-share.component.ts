@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, OnDestroy } from '@angular/core';
 import { HttpClient, HttpEventType } from '@angular/common/http';
 import { environment } from '../environment/environment'
 
@@ -81,11 +81,10 @@ export class FileShareComponent implements OnInit, OnDestroy  {
     window.removeEventListener('beforeunload', this.confirmOnPageExit.bind(this));
   }
 
-  confirmOnPageExit(event: any): void { 
+  confirmOnPageExit(event: any): void {
     if (this.uploadProgress !== 0 && this.uploadProgress !== 100) {
       const message = 'Upload in progress. To prevent list error, please hold.';
       event.returnValue = message;
-      return message;
     }
   }
 
