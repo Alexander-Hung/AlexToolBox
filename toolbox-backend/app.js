@@ -7,6 +7,8 @@ const { exec } = require('child_process');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+var compileRouter = require('./routes/compile');
+var fileShareRouter = require('./routes/file-share');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
@@ -24,10 +26,6 @@ app.use(cors({
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-const corsOptions = {
-  origin: 'http://76.93.217.172:4200',
-  optionsSuccessStatus: 200
-};
 
 const storage = multer.diskStorage({
   destination: './uploads/',
@@ -148,5 +146,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/fileshare', fileShareRouter);
+app.use('/compile', compileRouter);
 
 module.exports = app;
