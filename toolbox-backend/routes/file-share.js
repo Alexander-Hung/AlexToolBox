@@ -3,6 +3,15 @@ const fs = require('fs');
 const path = require('path');
 const multer = require('multer');
 const router = express.Router();
+var cors = require('cors');
+
+// Middleware
+app.use(cors());
+app.use(cors({
+  origin: 'http://76.93.217.172:4200',
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE']
+}));
 
 const storage = multer.diskStorage({
   destination: './uploads/',
