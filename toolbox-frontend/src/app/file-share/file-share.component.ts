@@ -11,7 +11,7 @@ interface UploadResponse {
   templateUrl: './file-share.component.html',
   styleUrls: ['./file-share.component.css']
 })
-export class FileShareComponent implements OnInit {
+export class FileShareComponent implements OnInit, OnDestroy  {
   files: string[] = [];
   isLocked: boolean = true;
   uploadProgress: number = 0;
@@ -20,6 +20,7 @@ export class FileShareComponent implements OnInit {
 
   ngOnInit(): void {
     this.refreshFileList();
+    window.addEventListener('beforeunload', this.confirmOnPageExit.bind(this));
   }
 
   promptPassword() {
@@ -75,6 +76,18 @@ export class FileShareComponent implements OnInit {
     }
   }
 
+  ngOnDestroy(): void {
+    // Remove the beforeunload listener to prevent memory leaks
+    window.removeEventListener('beforeunload', this.confirmOnPageExit.bind(this));
+  }
+
+  confirmOnPageExit(event: any): void { 
+    if (this.uploadProgress !== 0 && this.uploadProgress !== 100) {
+      const message = 'Upload in progress. To prevent list error, please hold.';
+      event.returnValue = message;
+      return message;
+    }
+  }
 
   downloadFile(file: string) {
     window.location.href = `${environment.apiBaseUrl}/download/${file}`;
