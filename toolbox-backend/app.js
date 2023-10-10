@@ -10,7 +10,6 @@ var usersRouter = require('./routes/users');
 var app = express();
 const port = 5000;
 var cors = require('cors');
-const path = require('path');
 
 app.use(cors());
 app.use(cors({
