@@ -47,9 +47,8 @@ export class FileShareComponent implements OnInit {
       console.log('File deleted');
       this.refreshFileList();  // Refresh the file list after deleting a file
     }, error => {
-      console.error('Error deleting file:', error);
-      this.uploadProgress = 0; // Reset progress
       this.refreshFileList();
+      console.error('Error deleting file:', error);
     });
   }
   onFileSelected(event: any) {
@@ -66,7 +65,6 @@ export class FileShareComponent implements OnInit {
           if (event.total) {
             this.uploadProgress = Math.round(100 * event.loaded / event.total);
           }
-          this.uploadProgress = 0; // Reset progress
           this.refreshFileList();
         } else if (event.type === HttpEventType.Response) {
           console.log('Upload response:', (event.body as UploadResponse).message);
