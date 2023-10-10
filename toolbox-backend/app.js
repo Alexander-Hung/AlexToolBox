@@ -6,6 +6,10 @@ const multer = require('multer');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var cors = require('cors');
+const env = require('./routes/environment');
+
+const IP = env.IP;
+const UPLOAD_PATH = env.UPLOAD_PATH;
 
 var app = express();
 const port = 5000;
@@ -13,7 +17,7 @@ const port = 5000;
 // Middleware
 app.use(cors());
 app.use(cors({
-  origin: 'http://76.93.217.172:4200',
+  origin: `${IP}`,
   allowedHeaders: ['Content-Type', 'Authorization'],
   methods: ['GET', 'POST', 'PUT', 'DELETE']
 }));
@@ -22,7 +26,7 @@ app.use(cors({
 
 
 const storage = multer.diskStorage({
-  destination: './uploads/',
+  destination: `${UPLOAD_PATH}`,
   filename: function(req, file, cb) {
     cb(null, file.originalname);
   }
@@ -35,7 +39,7 @@ app.post('/upload', upload.single('file'), (req, res) => {
 });
 
 app.get('/download/:filename', (req, res) => {
-  const file = path.join(__dirname, './uploads', req.params.filename);
+  const file = path.join(__dirname, `${UPLOAD_PATH}`, req.params.filename);
   if (!fs.existsSync(file)) {
     console.error('File not found:', req.params.filename);
     return res.status(404).send('File not found');
@@ -44,7 +48,7 @@ app.get('/download/:filename', (req, res) => {
 });
 
 app.get('/files', (req, res) => {
-  const directoryPath = path.join(__dirname, './uploads');
+  const directoryPath = path.join(__dirname, `${UPLOAD_PATH}`);
   fs.readdir(directoryPath, (err, files) => {
     if (err) {
       console.error('Error fetching file list:', err);
@@ -55,7 +59,7 @@ app.get('/files', (req, res) => {
 });
 
 app.delete('/delete/:filename', (req, res) => {
-  const file = path.join(__dirname, './uploads', req.params.filename);
+  const file = path.join(__dirname, `${UPLOAD_PATH}`, req.params.filename);
   if (!fs.existsSync(file)) {
     console.error('File not found:', req.params.filename);
     return res.status(404).send('File not found');
