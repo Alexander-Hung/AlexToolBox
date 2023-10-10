@@ -21,56 +21,6 @@ app.use(cors({
 
 
 
-const storage = multer.diskStorage({
-  destination: './uploads/',
-  filename: function(req, file, cb) {
-    cb(null, file.originalname);
-  }
-});
-const upload = multer({ storage: storage });
-
-app.post('/upload', upload.single('file'), (req, res) => {
-  console.log("File upload endpoint hit!");
-  res.send('File uploaded!');
-});
-
-app.get('/download/:filename', (req, res) => {
-  const file = path.join(__dirname, '../uploads', req.params.filename);
-  if (!fs.existsSync(file)) {
-    console.error('File not found:', req.params.filename);
-    return res.status(404).send('File not found');
-  }
-  res.download(file);
-});
-
-app.get('/files', (req, res) => {
-  const directoryPath = path.join(__dirname, '../uploads');
-  fs.readdir(directoryPath, (err, files) => {
-    if (err) {
-      console.error('Error fetching file list:', err);
-      return res.status(500).send('Unable to scan directory: ' + err);
-    }
-    res.json(files);
-  });
-});
-
-app.delete('/delete/:filename', (req, res) => {
-  const file = path.join(__dirname, '../uploads', req.params.filename);
-  if (!fs.existsSync(file)) {
-    console.error('File not found:', req.params.filename);
-    return res.status(404).send('File not found');
-  }
-
-  fs.unlink(file, (err) => {
-    if (err) {
-      console.error('Error deleting file:', err);
-      return res.status(500).send('Error deleting file');
-    }
-    res.send('File deleted successfully');
-  });
-});
-
-
 
 
 app.use(bodyParser.json());
