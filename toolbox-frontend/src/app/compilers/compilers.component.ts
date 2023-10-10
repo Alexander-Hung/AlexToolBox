@@ -17,7 +17,7 @@ export class CompilersComponent {
 
   promptPassword() {
     const password = prompt('Enter password to unlock:');
-    if (password === 'test') {  // Replace 'yourPasswordHere' with your desired password
+    if (password === `${environment.password}`) {  // Replace 'yourPasswordHere' with your desired password
       this.isLocked = false;
     } else {
       alert('Incorrect password!');

@@ -1,3 +1,4 @@
+import environment from './environment/environment'
 const express = require('express');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
@@ -13,7 +14,7 @@ var cors = require('cors');
 
 app.use(cors());
 app.use(cors({
-  origin: 'http://76.93.217.172:4200',
+  origin: `${environment.apiOutUrl}`,
   allowedHeaders: ['Content-Type', 'Authorization', /* other headers */],
   methods: ['GET', 'POST', 'PUT', 'DELETE']
 }));

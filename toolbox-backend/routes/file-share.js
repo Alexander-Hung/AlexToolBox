@@ -1,3 +1,4 @@
+import environment from '../environment/environment'
 var express = require('express');
 var router = express.Router();
 
@@ -9,7 +10,7 @@ var cors = require('cors');
 
 router.use(cors());
 router.use(cors({
-  origin: 'http://76.93.217.172:4200',
+  origin: `${environment.apiOutUrl}`,
   allowedHeaders: ['Content-Type', 'Authorization', /* other headers */],
   methods: ['GET', 'POST', 'PUT', 'DELETE']
 }));
