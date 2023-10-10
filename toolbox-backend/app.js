@@ -97,36 +97,6 @@ app.delete('/delete/:filename', (req, res) => {
   });
 });
 
-app.post('/compile', (req, res) => {
-  console.log(req.body);  // Log the received body
-  const code = req.body.code;
-
-  const dir = './temp';
-  if (!fs.existsSync(dir)){
-    fs.mkdirSync(dir);
-  }
-
-  // Save the code to a temporary .java file
-  const filename = 'TempClass';
-  fs.writeFileSync(path.join(dir, `${filename}.java`), code);
-
-  // Compile and run the Java code
-  exec(`javac ./temp/${filename}.java && java -cp ./temp ${filename}`, (error, stdout, stderr) => {
-    if (error) {
-      return res.json({
-        success: false,
-        output: stderr,
-      });
-    }
-    res.json({
-      success: true,
-      output: stdout,
-    });
-  });
-});
-
-
-
 
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*"); // Allow any origin
