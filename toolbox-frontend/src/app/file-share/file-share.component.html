@@ -1,4 +1,3 @@
-
   <mat-toolbar color="primary">
     <router-outlet>
       <mat-list-item>
@@ -46,14 +45,11 @@
         </mat-list>
 
       </router-outlet>
-
-</div>
+        <!-- Progress Bar -->
+        <div style="text-align: center">
+          <p>{{uploadProgress}}%</p>
+          <mat-progress-bar style="height: 100px; width: 90%; margin-left: 5%" mode="determinate" [value]="uploadProgress"></mat-progress-bar>
+        </div>
+      </div>
     </mat-sidenav-content>
   </mat-sidenav-container>
-  <!-- Progress Bar -->
-  <div style="margin-left: 40%">
-    <mat-progress-bar style="width: 500px;" mode="determinate" [value]="uploadProgress"></mat-progress-bar>
-  </div>
-
-
-
