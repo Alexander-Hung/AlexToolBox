@@ -3,9 +3,6 @@ var router = express.Router();
 
 const bodyParser = require('body-parser');
 const { exec } = require('child_process');
-const env = require('./environment.js');
-
-const TEMP_PATH = env.TEMP_PATH;
 
 var cors = require('cors');
 const fs = require('fs');
@@ -21,7 +18,7 @@ router.post('/compile', (req, res) => {
   console.log(req.body);  // Log the received body
   const code = req.body.code;
 
-  const dir = TEMP_PATH;
+  const dir = '../temp';
   if (!fs.existsSync(dir)){
     fs.mkdirSync(dir);
   }
@@ -31,7 +28,7 @@ router.post('/compile', (req, res) => {
   fs.writeFileSync(path.join(dir, `${filename}.java`), code);
 
   // Compile and run the Java code
-  exec(`javac ${TEMP_PATH}/${filename}.java && java -cp ${TEMP_PATH} ${filename}`, (error, stdout, stderr) => {
+  exec(`javac ../temp/${filename}.java && java -cp ../temp ${filename}`, (error, stdout, stderr) => {
     if (error) {
       return res.json({
         success: false,
