@@ -1,3 +1,4 @@
+import environment from './environment/environment'
 const express = require('express');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
