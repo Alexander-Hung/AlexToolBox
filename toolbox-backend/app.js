@@ -97,7 +97,7 @@ app.use('/users', require('./routes/users'));
 app.use('/compile', require('./routes/compile'));
 
 app.listen(port, '0.0.0.0', () => {
-  console.log(`Server started on http://192.168.50.223:${port}`);
+  console.log(`Server started on ${port}`);
 });
 
 module.exports = app;
