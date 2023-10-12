@@ -13,7 +13,7 @@ const IP = env.IP;
 const UPLOAD_PATH = env.UPLOAD_PATH;
 
 var app = express();
-const port = 443;
+const port = 5000;
 
 // Middleware
 app.use(cors());
@@ -110,7 +110,7 @@ app.use('/', require('./routes/index'));
 app.use('/users', require('./routes/users'));
 app.use('/compile', require('./routes/compile'));
 
-httpsServer.listen(port, () => { //app.listen(port, '0.0.0.0'
+httpsServer.listen(port, '76.93.217.172', () => { //app.listen(port, '0.0.0.0'
   console.log(`Server started on ${port}`);
 });
 
