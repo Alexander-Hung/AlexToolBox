@@ -1,23 +1,24 @@
-  <mat-toolbar color="primary">
-    <router-outlet>
-      <mat-list-item>
-        <span style="font-size: 40px">Alex's Toolbox</span>
-        <span class="spacer"></span>
-      </mat-list-item>
-    </router-outlet>
-  </mat-toolbar>
-
+<mat-toolbar color="primary">
   <router-outlet>
-    <h1 style="margin-top: 16px">File Shares: <span style="font-size: 17px">File sharing in web server that allows you download your files any devices</span></h1>
+    <mat-list-item>
+      <span style="font-size: 40px">Alex's Toolbox</span>
+      <span class="spacer"></span>
+    </mat-list-item>
   </router-outlet>
+</mat-toolbar>
 
-  <mat-sidenav-container class="sidenav-container">
-    <mat-sidenav mode="side" opened class="sidenav">
-      <mat-nav-list class="mat-nav-list-padding">
-        <a mat-list-item routerLink="/home">Home Page</a>
-        <a mat-list-item routerLink="/service">Tool list</a>
-      </mat-nav-list>
-    </mat-sidenav>
+<div style="display: flex; margin: 0; padding: 0">
+  <button mat-button (click)="drawer.toggle()"><mat-icon>menu</mat-icon></button>
+  <h1 style="margin-top: 10px; font-size: 200%">File Shares: <span style="font-size: 17px">File sharing in web server that allows you download your files any devices</span></h1>
+</div>
+
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer mode="side" opened class="sidenav">
+    <mat-nav-list class="mat-nav-list-padding">
+      <a mat-list-item routerLink="/home">Home Page</a>
+      <a mat-list-item routerLink="/service">Tool list</a>
+    </mat-nav-list>
+  </mat-sidenav>
 
     <mat-sidenav-content>
       <div style="text-align: center">
