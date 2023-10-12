@@ -13,9 +13,6 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "allowedHosts": [
-              "www.alextoolbox.online"
-            ],
             "outputPath": "dist/toolbox-frontend",
             "index": "src/index.html",
             "main": "src/main.ts",
