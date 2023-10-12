@@ -13,7 +13,7 @@ const IP = env.IP;
 const UPLOAD_PATH = env.UPLOAD_PATH;
 
 var app = express();
-const port = 5000;
+const port = 80;
 
 // Middleware
 app.use(cors());
