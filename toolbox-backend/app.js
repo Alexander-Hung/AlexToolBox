@@ -14,6 +14,19 @@ const UPLOAD_PATH = env.UPLOAD_PATH;
 var app = express();
 const port = 5000;
 
+const privateKey = fs.readFileSync(`${env.KEY_PATH}`, 'utf8');
+const certificate = fs.readFileSync(`${env.CER_PATH}`, 'utf8');
+const ca = fs.readFileSync(`${env.CA_PATH}`, 'utf8');
+
+const credentials = {
+  key: privateKey,
+  cert: certificate,
+  ca: ca, // Optional, if you have the CA bundle
+};
+
+const httpsServer = https.createServer(credentials, app);
+
+
 // Middleware
 app.use(cors());
 app.use(cors({
@@ -96,7 +109,7 @@ app.use('/', require('./routes/index'));
 app.use('/users', require('./routes/users'));
 app.use('/compile', require('./routes/compile'));
 
-app.listen(port, '0.0.0.0', () => {
+httpsServer.listen(port, () => {
   console.log(`Server started on ${port}`);
 });
 
