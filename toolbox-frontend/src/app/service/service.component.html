@@ -7,12 +7,14 @@
   </router-outlet>
 </mat-toolbar>
 
-<router-outlet>
-  <h1 style="margin-top: 16px">Tool list: <span style="font-size: 17px">List of All tools in Alex's Toolbox</span></h1>
-</router-outlet>
+<div style="display: flex; margin: 0; padding: 0">
+  <button mat-button (click)="drawer.toggle()"><mat-icon>menu</mat-icon></button>
+  <h1 style="margin-top: 10px; font-size: 200%">Tool list: <span style="font-size: 17px">List of All tools in Alex's Toolbox</span></h1>
+
+</div>
 
 <mat-sidenav-container class="sidenav-container">
-  <mat-sidenav mode="side" opened class="sidenav">
+  <mat-sidenav #drawer mode="side" opened class="sidenav">
     <mat-nav-list class="mat-nav-list-padding">
       <a mat-list-item routerLink="/home">Home Page</a>
       <a mat-list-item routerLink="/service">Tool list</a>
