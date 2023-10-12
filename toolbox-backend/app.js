@@ -15,15 +15,6 @@ const UPLOAD_PATH = env.UPLOAD_PATH;
 var app = express();
 const port = 5000;
 
-// Middleware
-app.use(cors());
-app.use(cors({
-  origin: `${IP}`,
-  allowedHeaders: ['Content-Type', 'Authorization'],
-  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-  credentials: true,
-}));
-
 const privateKey = fs.readFileSync(`${env.KEY_PATH}`, 'utf8');  //remove if not working
 const certificate = fs.readFileSync(`${env.CER_PATH}`, 'utf8'); //remove if not working
 const ca = fs.readFileSync(`${env.CA_PATH}`, 'utf8'); //remove if not working
@@ -35,6 +26,15 @@ const credentials = { //remove if not working
 };//remove if not working
 
 const httpsServer = https.createServer(credentials, app);//remove if not working
+
+
+// Middleware
+app.use(cors());
+app.use(cors({
+  origin: `${IP}`,
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE']
+}));
 
 
 
