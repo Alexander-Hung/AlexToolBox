@@ -6,8 +6,4 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
-router.get('/tools', function(req, res, next) {
-  res.json({ tools: ["calculator", "file-share", "compile"] });
-});
-
 module.exports = router;
