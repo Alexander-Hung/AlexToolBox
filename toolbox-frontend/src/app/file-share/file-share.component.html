@@ -31,12 +31,17 @@
 
       <div *ngIf="!isLocked">
 
-      <router-outlet class="context"><h4>**Auto refresh may not working, please refresh list by yourself**</h4></router-outlet>
-      <router-outlet class="context">
+      <router-outlet class="context" style="text-align: center">
+        <h4>**Auto refresh may not working, please refresh list by yourself**</h4>
+      </router-outlet>
+
+      <div class="context">
         <!-- Upload Section -->
         <button style="margin-right: 300px; margin-bottom: 100px" mat-raised-button (click)="fileInput.click()">Upload File</button>
         <input hidden type="file" #fileInput (change)="onFileSelected($event)" />
+      </div>
 
+      <router-outlet class="context">
         <!-- File List Section -->
         <mat-list *ngIf="files.length > 0">
           <mat-list-item *ngFor="let file of files">
