@@ -15,17 +15,17 @@ const UPLOAD_PATH = env.UPLOAD_PATH;
 var app = express();
 const port = 5000;
 
-const privateKey = fs.readFileSync(`${env.KEY_PATH}`, 'utf8');  //remove if not working
-const certificate = fs.readFileSync(`${env.CER_PATH}`, 'utf8'); //remove if not working
-const ca = fs.readFileSync(`${env.CA_PATH}`, 'utf8'); //remove if not working
+//const privateKey = fs.readFileSync(`${env.KEY_PATH}`, 'utf8');  //remove if not working
+//const certificate = fs.readFileSync(`${env.CER_PATH}`, 'utf8'); //remove if not working
+//const ca = fs.readFileSync(`${env.CA_PATH}`, 'utf8'); //remove if not working
 
-const credentials = { //remove if not working
-  key: privateKey,//remove if not working
-  cert: certificate,//remove if not working
-  ca: ca, // Optional, if you have the CA bundle//remove if not working
-};//remove if not working
+//const credentials = { //remove if not working
+//  key: privateKey,//remove if not working
+//  cert: certificate,//remove if not working
+//  ca: ca, // Optional, if you have the CA bundle//remove if not working
+//};//remove if not working
 
-const httpsServer = https.createServer(credentials, app);//remove if not working
+//const httpsServer = https.createServer(credentials, app);//remove if not working
 
 
 // Middleware
@@ -111,7 +111,7 @@ app.use('/', require('./routes/index'));
 app.use('/users', require('./routes/users'));
 app.use('/compile', require('./routes/compile'));
 
-httpsServer.listen(port, () => { //app.listen(port, '0.0.0.0'
+app.listen(port, '0.0.0.0', () => { //app.listen(port, '0.0.0.0'
   console.log(`Server started on ${port}`);
 });
 
