@@ -33,7 +33,8 @@ app.use(cors());
 app.use(cors({
   origin: `${IP}`,
   allowedHeaders: ['Content-Type', 'Authorization'],
-  methods: ['GET', 'POST', 'PUT', 'DELETE']
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  optionsSuccessStatus: 200,
 }));
 
 
