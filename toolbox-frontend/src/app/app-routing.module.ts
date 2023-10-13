@@ -8,7 +8,8 @@ import {CompilersComponent} from "./compilers/compilers.component";
 
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
+  { path: '', redirectTo:'/home', pathMatch:'full'},
+  { path: 'home', component: HomeComponent },
   { path: 'service', component: ServiceComponent },
   { path: 'calculator', component: CalculatorComponent },
   { path: 'share', component: FileShareComponent },
