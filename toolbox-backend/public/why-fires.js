@@ -1,10 +1,17 @@
+// D3.js visualization
 d3.select('#d3Div').append('svg').attr('width', 300).attr('height', 200)
     .append('circle').attr('cx', 50).attr('cy', 50).attr('r', 40).attr('fill', 'blue');
 
-d3.csv("./data/modis_test.csv").then(function(data) {
-  createTable(data);
-  createGeoGraph(data);
-});
+window.onload = function() {
+  // Delay data fetching by 2 seconds (2000 milliseconds)
+  setTimeout(function() {
+    d3.csv("./data/modis_2022_United_States.csv").then(function(data) {
+      createTable(data);
+      createGeoGraph(data);
+    });
+  }, 2000);
+};
+
 
 function createTable(data) {
   // Create a table using D3.js
@@ -22,7 +29,7 @@ function createTable(data) {
 
   // Append rows
   let rows = tbody.selectAll("tr")
-      .data(data)
+      .data(data.slice(0, 20))
       .enter()
       .append("tr");
 
@@ -64,7 +71,6 @@ function createGeoGraph(data) {
       zoom: 3
     },
     height: 1000,
-    width: 1500,
   };
 
   Plotly.newPlot('plotlyDiv', trace, layout);
