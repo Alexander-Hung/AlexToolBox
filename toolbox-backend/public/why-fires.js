@@ -6,12 +6,6 @@ d3.csv("./data/modis_test.csv").then(function(data) {
   createGeoGraph(data);
 });
 
-//API Token
-Plotly.setPlotConfig({
-  mapboxAccessToken: 'pk.eyJ1IjoiYWxleGFuZGVyaHVuZyIsImEiOiJjbG8xY2VnMXcwc2x0MmxvZHBmNTVpYjM3In0.nghzNs8d4lg_MLvHETaB_w'
-});
-
-
 function createTable(data) {
   // Create a table using D3.js
   let table = d3.select("#tableDiv").append("table");
@@ -62,6 +56,7 @@ function createGeoGraph(data) {
       scope: 'usa',
     },
     mapbox: {
+      style: 'carto-positron',
       center: {
         lat: 37.0902,  // center it to the USA
         lon: -95.7129
