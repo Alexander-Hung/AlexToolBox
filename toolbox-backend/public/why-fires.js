@@ -73,8 +73,3 @@ function createGeoGraph(data) {
 
   Plotly.newPlot('plotlyDiv', trace, layout);
 }
-
-app.get('/why-fires', (req, res) => {
-    res.sendFile(path.join(__dirname, 'index.html'));
-});
-
