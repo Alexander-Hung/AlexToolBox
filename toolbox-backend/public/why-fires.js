@@ -69,6 +69,7 @@ function createGeoGraph(data) {
       zoom: 3
     },
     height: 1000,
+    width: 1500,
   };
 
   Plotly.newPlot('plotlyDiv', trace, layout);
