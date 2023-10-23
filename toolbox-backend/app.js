@@ -90,6 +90,12 @@ app.delete('/delete/:filename', (req, res) => {
 });
 
 
+app.get('/why-fires', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public/why-fires.html'));
+});
+
+
+
 
 
 app.use(bodyParser.json());
