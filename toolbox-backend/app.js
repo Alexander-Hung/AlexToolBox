@@ -39,7 +39,7 @@ app.use(cors({
 
 
 
-
+//files-share
 const storage = multer.diskStorage({
   destination: `${UPLOAD_PATH}`,
   filename: function(req, file, cb) {
@@ -89,6 +89,13 @@ app.delete('/delete/:filename', (req, res) => {
   });
 });
 
+//why-fires
+app.get('/why-fires', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'why-fires.html'));
+});
+
+
+
 
 
 
@@ -110,6 +117,7 @@ app.use((req, res, next) => {
 app.use('/', require('./routes/index'));
 app.use('/users', require('./routes/users'));
 app.use('/compile', require('./routes/compile'));
+app.use('/why-fires', require('./routes/why-fires'));
 
 httpsServer.listen(port, '0.0.0.0', () => { //app.listen(port, '0.0.0.0'
   console.log(`Server started on ${port}`);
