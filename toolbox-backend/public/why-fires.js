@@ -13,6 +13,54 @@ const dayNightMapping = {
 d3.select('#d3Div').append('svg').attr('width', 300).attr('height', 200)
     .append('circle').attr('cx', 150).attr('cy', 100).attr('r', 40).attr('fill', 'blue');
 
+function filterData(data) {
+  let filteredData = data;
+  const stateFilter = document.getElementById('stateFilter').value;
+  const dayNightFilter = document.getElementById('dayNightFilter').value;
+  const typeFilter = document.getElementById('typeFilter').value;
+  const dateFilter = document.getElementById('dateFilter').value;
+  const monthFilter = document.getElementById('monthFilter').value;
+
+  if (stateFilter) {
+    filteredData = filteredData.filter(d => d.state_name === stateFilter);
+  }
+  if (dayNightFilter) {
+    filteredData = filteredData.filter(d => d.daynight === dayNightFilter);
+  }
+  if (typeFilter) {
+    filteredData = filteredData.filter(d => d.type === typeFilter);
+  }
+  if (dateFilter) {
+    filteredData = filteredData.filter(d => d.acq_date === dateFilter);
+  }
+  if (monthFilter) {
+    filteredData = filteredData.filter(d => {
+      const month = new Date(d.acq_date).getMonth() + 1;
+      return month.toString() === monthFilter;
+    });
+  }
+  return filteredData;
+}
+
+function loadYearData(year) {
+  const dataPath = `./data/modis_${year}_United_States.csv`;
+  let currentLayout = getPlotlyLayout('mapContainer');
+  let currentCenter = currentLayout.center;
+  let currentZoom = currentLayout.zoom;
+
+  // Set the min and max dates for the date input
+  const minDate = `${year}-01-01`; // first day of the year
+  const maxDate = `${year}-12-31`; // last day of the year
+  document.getElementById('dateFilter').setAttribute('min', minDate);
+  document.getElementById('dateFilter').setAttribute('max', maxDate);
+
+  d3.csv(dataPath).then((data) => {
+    let filteredData = filterData(data);
+    createGeoGraph(filteredData, currentZoom, currentCenter);
+  });
+}
+
+
 document.getElementById('yearSlider').addEventListener('input', function(e) {
   const year = e.target.value;
   document.getElementById('yearDisplay').textContent = year;
@@ -21,18 +69,11 @@ document.getElementById('yearSlider').addEventListener('input', function(e) {
 
 loadYearData(document.getElementById('yearSlider').value);
 
-function loadYearData(year) {
-  const dataPath = `./data/modis_${year}_United_States.csv`;
-
-  // Get the current layout before loading new data
-  let currentLayout = getPlotlyLayout('mapContainer');
-  let currentCenter = currentLayout.center;
-  let currentZoom = currentLayout.zoom;
-
-  d3.csv(dataPath).then((data) => {
-    createGeoGraph(data, currentZoom, currentCenter);
-  });
-}
+document.getElementById('stateFilter').addEventListener('change', () => loadYearData(document.getElementById('yearSlider').value));
+document.getElementById('dayNightFilter').addEventListener('change', () => loadYearData(document.getElementById('yearSlider').value));
+document.getElementById('typeFilter').addEventListener('change', () => loadYearData(document.getElementById('yearSlider').value));
+document.getElementById('dateFilter').addEventListener('change', () => loadYearData(document.getElementById('yearSlider').value));
+document.getElementById('monthFilter').addEventListener('change', () => loadYearData(document.getElementById('yearSlider').value));
 
 function createGeoGraph(data, currentZoom, currentCenter) {
   let trace = [
@@ -102,4 +143,3 @@ function getPlotlyLayout(divId) {
   }
   return currentLayout;
 }
-
