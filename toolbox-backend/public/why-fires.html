@@ -6,34 +6,34 @@
   <title>Why Fires</title>
   <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
   <script src="https://cdn.plot.ly/plotly-2.26.0.min.js" charset="utf-8"></script>
-  <style>
-    table {
-      width: 100%;
-      border-collapse: collapse;
-    }
-    table, th, td {
-      border: 1px solid black;
-    }
-    th, td {
-      padding: 8px 12px;
-    }
-    th {
-      background-color: #f2f2f2;
-    }
-    tr:hover {
-      background-color: #f5f5f5;
-    }
-  </style>
-
+  <link href="stylesheet.css" rel="stylesheet">
 </head>
 <body>
-<h1 style="display: flex; align-items: center; justify-content: center;">Visualization</h1>
-<div style="display: flex; align-items: center; justify-content: center;" id="plotlyDiv"></div>
-<!--<div id="d3Div"></div>-->
-<h1 style="display: flex; align-items: center; justify-content: center;">Data</h1>
-<div style="display: flex; align-items: center; justify-content: center;" id="tableDiv"></div>
+<header>
+  <button id="toggle2D">2D</button>
+  <button id="toggle3D">3D</button>
+</header>
+<main>
 
-<script src="why-fires.js"></script>
+  <div class="container">
+    <div id="mapContainer" style="width: 60%; height: 500px; float: left;">
+
+      <div class="center">
+        <input type="range" id="yearSlider" min="2012" max="2022" value="2012">
+      </div>
+      <div class="center">
+        <h2 id="yearDisplay">2012</h2>
+      </div>
+
+    </div>
+    <div id="detailBox">Click on a data point to see the details here.</div>
+
+  </div>
+
+</main>
+<footer>
+
+</footer>
+<script src="app.js"></script>
 </body>
 </html>
-
