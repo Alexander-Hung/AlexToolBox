@@ -6,8 +6,6 @@ body {
 }
 
 header {
-  display: flex;
-  justify-content: flex-end;
 
 }
 
@@ -28,12 +26,16 @@ footer {
 .center {
   justify-content: center;
   text-align: center;
+  align-items: center;
 }
 .container {
-  display: flex;
-  flex-direction: row;
   width: 100%;
   height: 100%;
+}
+
+#toggle3D {
+  margin: 10px;
+  float: left;
 }
 
 #mapContainer {
@@ -41,7 +43,13 @@ footer {
   height: 100vh;
 }
 
-#detailBox {
-  margin-top: 100px;
+#detailContainer {
+  margin-top: 200px;
   margin-right: 50px;
+  margin-left: 10px;
+}
+
+#filter {
+  margin: 10px;
+  float: right;
 }

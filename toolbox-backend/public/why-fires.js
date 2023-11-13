@@ -1,3 +1,12 @@
+let is3D = false;
+document.getElementById('toggle3D').addEventListener('click', function() {
+  is3D = !is3D; // Toggle the is3D flag
+  loadYearData(document.getElementById('yearSlider').value);
+});
+
+d3.select('#d3Div').append('svg').attr('width', 300).attr('height', 200)
+    .append('circle').attr('cx', 150).attr('cy', 100).attr('r', 40).attr('fill', 'blue');
+
 const typeMapping = {
   '0': 'Presumed Vegetation Fire',
   '1': 'Active Volcano',
@@ -9,9 +18,6 @@ const dayNightMapping = {
   'D' : 'Daytime fire',
   'N' : 'Nighttime fire'
 }
-
-d3.select('#d3Div').append('svg').attr('width', 300).attr('height', 200)
-    .append('circle').attr('cx', 150).attr('cy', 100).attr('r', 40).attr('fill', 'blue');
 
 function filterData(data) {
   let filteredData = data;
@@ -56,10 +62,10 @@ function loadYearData(year) {
 
   d3.csv(dataPath).then((data) => {
     let filteredData = filterData(data);
+    updateDataCount(filteredData.length);
     createGeoGraph(filteredData, currentZoom, currentCenter);
   });
 }
-
 
 document.getElementById('yearSlider').addEventListener('input', function(e) {
   const year = e.target.value;
@@ -76,6 +82,14 @@ document.getElementById('dateFilter').addEventListener('change', () => loadYearD
 document.getElementById('monthFilter').addEventListener('change', () => loadYearData(document.getElementById('yearSlider').value));
 
 function createGeoGraph(data, currentZoom, currentCenter) {
+  if (is3D) {
+    create3DMap(data);
+  } else {
+    create2DMap(data, currentZoom, currentCenter);
+  }
+}
+
+function create2DMap(data, currentZoom, currentCenter) {
   let trace = [
     {
       type: 'scattermapbox',
@@ -111,8 +125,18 @@ function createGeoGraph(data, currentZoom, currentCenter) {
   });
 }
 
+function create3DMap(data) {
+  //const container = document.getElementById('mapContainer');
+  //container.innerHTML = '';
+
+}
+
 function formatTime(timeStr) {
   return timeStr.padStart(4, '0').replace(/^(..)(..)$/, '$1:$2');
+}
+
+function updateDataCount(count) {
+  document.getElementById('totalDataPoints').textContent = count;
 }
 
 function getDetail(d) {
