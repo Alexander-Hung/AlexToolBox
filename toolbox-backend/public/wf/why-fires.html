@@ -7,15 +7,18 @@
   <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
   <script src="https://cdn.plot.ly/plotly-2.26.0.min.js" charset="utf-8"></script>
   <link href="stylesheet.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
 <header>
-  <h1 id="title">Why Fires</h1>
 </header>
 <main>
-  <div id="container" class="center">
-    <div id="mapContainer">
+  <div id="container" class="wrapper side-panel-open">
+    <div class="main">
+      <div id="mapContainer"></div>
+    </div>
 
+    <div class="side-panel">
       <div id="infoContainer">
         <div id="filter">
           <select id="stateFilter">
@@ -119,6 +122,11 @@
         </div>
       </div>
     </div>
+
+    <button class="side-panel-toggle" type="button">
+      <span class="material-icons sp-icon-open">keyboard_double_arrow_right</span>
+      <span class="material-icons sp-icon-close">keyboard_double_arrow_left</span>
+    </button>
 
   </div>
 

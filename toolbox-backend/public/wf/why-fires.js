@@ -19,58 +19,116 @@ const dayNightMapping = {
   'N' : 'Nighttime fire'
 }
 
+const dayNightStyle = {
+  'D' : 'light',
+  'N' : 'dark'
+}
+
 const statesLonLat = {
-  'Alabama' : {lat: 32.3182 , lon: -86.9023 },
-  'Alaska': {lat: 65.8673, lon: -151.2874},
-  'Arizona': {lat: 33.4484, lon: -112.0740},
+  'Alabama' : {lat: 32.7182 , lon: -86.9023 },
+  'Alaska': {lat: 62.4673, lon: -151.2874},
+  'Arizona': {lat: 34.0784, lon: -112.0740},
   'Arkansas': {lat: 34.7465, lon: -92.2896},
   'California': {lat: 36.7783, lon: -119.4179},
-  'Colorado': {lat: 39.5501, lon: -105.7821},
+  'Colorado': {lat: 39.1501, lon: -105.7821},
   'Connecticut': {lat: 41.6032, lon: -73.0877},
-  'Delaware': {lat: 38.9108, lon: -75.5277},
+  'Delaware': {lat: 39.2108, lon: -75.5277},
   'Florida': {lat: 27.9944, lon: -81.7603},
   'Georgia': {lat: 33.0406, lon: -83.6431},
-  'Hawaii' : {lat: 19.8987 , lon: -155.6659 },
-  'Idaho': {lat: 44.0682, lon: -114.7420},
-  'Illinois': {lat: 40.6331, lon: -89.3985},
-  'Indiana': {lat: 40.5512, lon: -85.6024},
+  'Hawaii' : {lat: 20.6987 , lon: -157.6659 },
+  'Idaho': {lat: 45.3682, lon: -114.7420},
+  'Illinois': {lat: 39.7331, lon: -89.3985},
+  'Indiana': {lat: 39.8512, lon: -85.6024},
   'Iowa': {lat: 41.8780, lon: -93.0977},
   'Kansas': {lat: 39.0119, lon: -98.4842},
   'Kentucky': {lat: 37.8393, lon: -84.2700},
   'Louisiana': {lat: 31.1695, lon: -91.8678},
   'Maine': {lat: 45.2538, lon: -69.4455},
   'Maryland': {lat: 39.0458, lon: -76.6413},
-  'Massachusetts': {lat: 42.4072, lon: -71.3824},
+  'Massachusetts': {lat: 42.1072, lon: -71.3824},
   'Michigan': {lat: 44.3148, lon: -85.6024},
-  'Minnesota': {lat: 46.7296, lon: -94.6859},
+  'Minnesota': {lat: 46.5296, lon: -94.6859},
   'Mississippi': {lat: 32.3547, lon: -89.3985},
   'Missouri': {lat: 37.9643, lon: -91.8318},
   'Montana': {lat: 46.8797, lon: -110.3626},
   'Nebraska': {lat: 41.4925, lon: -99.9018},
   'Nevada': {lat: 38.8026, lon: -116.4194},
-  'New Hampshire': {lat: 43.1939, lon: -71.5724},
+  'New Hampshire': {lat: 43.7939, lon: -71.5724},
   'New Jersey': {lat: 40.0583, lon: -74.4057},
-  'New Mexico': {lat: 35.6869, lon: -105.9378},
+  'New Mexico': {lat: 34.7869, lon: -105.9378},
   'New York': {lat: 42.1657, lon: -74.9481},
   'North Carolina': {lat: 35.7596, lon: -79.0193},
   'North Dakota': {lat: 47.5515, lon: -101.0020},
   'Ohio': {lat: 40.4173, lon: -82.9071},
   'Oklahoma': {lat: 35.0078, lon: -97.0929},
-  'Oregon': {lat: 44.9426, lon: -122.9338},
+  'Oregon': {lat: 44.0282, lon: -120.3215},
   'Pennsylvania': {lat: 41.2033, lon: -77.1945},
-  'Rhode Island': {lat: 41.5801, lon: -71.4774},
+  'Rhode Island': {lat: 41.7201, lon: -71.4774},
   'South Carolina': {lat: 33.8361, lon: -81.1637},
   'South Dakota': {lat: 43.9695, lon: -99.9018},
   'Tennessee': {lat: 35.5175, lon: -86.5804},
   'Texas': {lat: 31.9686, lon: -99.9018},
   'Utah': {lat: 39.3210, lon: -111.0937},
-  'Vermont': {lat: 44.5588, lon: -72.5778},
+  'Vermont': {lat: 44.0588, lon: -72.5778},
   'Virginia': {lat: 37.7693, lon: -78.1700},
-  'Washington': {lat: 47.6062, lon: -122.3321},
+  'Washington': {lat: 47.4242, lon: -120.2272},
   'West Virginia': {lat: 38.5976, lon: -80.4549},
-  'Wisconsin': {lat: 43.0731, lon: -89.4012},
+  'Wisconsin': {lat: 44.8929, lon: -89.5094},
   'Wyoming': {lat: 43.0759, lon: -107.2903},
 }
+
+const statesZoom = {
+  'Alabama' : 6.3,
+  'Alaska': 3.5,
+  'Arizona': 6,
+  'Arkansas': 6.6,
+  'California': 5,
+  'Colorado': 6.4,
+  'Connecticut': 7.7,
+  'Delaware': 7.7,
+  'Florida': 5.9,
+  'Georgia': 6.1,
+  'Hawaii' : 6.4,
+  'Idaho': 5.4,
+  'Illinois': 5.9,
+  'Indiana': 6.3,
+  'Iowa': 6.4,
+  'Kansas': 6.2,
+  'Kentucky': 6.2,
+  'Louisiana': 6.3,
+  'Maine': 5.9,
+  'Maryland': 6.5,
+  'Massachusetts': 7.4,
+  'Michigan': 5.8,
+  'Minnesota': 5.6,
+  'Mississippi': 6.1,
+  'Missouri': 5.9,
+  'Montana': 5.4,
+  'Nebraska': 5.8,
+  'Nevada': 5.5,
+  'New Hampshire': 6.8,
+  'New Jersey': 6.8,
+  'New Mexico': 5.8,
+  'New York': 5.4,
+  'North Carolina': 6.1,
+  'North Dakota': 5.8,
+  'Ohio': 6,
+  'Oklahoma': 6.1,
+  'Oregon': 5.9,
+  'Pennsylvania': 6.2,
+  'Rhode Island': 8.8,
+  'South Carolina': 6.3,
+  'South Dakota': 5.6,
+  'Tennessee': 6.2,
+  'Texas': 5,
+  'Utah': 5.6,
+  'Vermont': 6.4,
+  'Virginia': 6.2,
+  'Washington': 6.3,
+  'West Virginia': 6.3,
+  'Wisconsin': 6,
+  'Wyoming': 6
+};
 
 let currentCenter = null;
 
@@ -124,8 +182,10 @@ function loadYearData(year) {
     updateDataCount(filteredData.length);
     let states = document.getElementById('stateFilter').value;
     let latLon = statesLonLat[states];
-    console.log(latLon);
-    createGeoGraph(filteredData, currentZoom, latLon);
+    let dayNight = document.getElementById('dayNightFilter').value;
+    let style = dayNightStyle[dayNight];
+    currentZoom = statesZoom[states];
+    createGeoGraph(filteredData, currentZoom, latLon, style);
   });
 }
 
@@ -143,51 +203,63 @@ document.getElementById('typeFilter').addEventListener('change', () => loadYearD
 document.getElementById('dateFilter').addEventListener('change', () => loadYearData(document.getElementById('yearSlider').value));
 document.getElementById('monthFilter').addEventListener('change', () => loadYearData(document.getElementById('yearSlider').value));
 
-function createGeoGraph(data, currentZoom, currentCenter) {
+function createGeoGraph(data, currentZoom, currentCenter, style) {
   if (is3D) {
     create3DMap(data);
   } else {
-    create2DMap(data, currentZoom, currentCenter);
+    create2DMap(data, currentZoom, currentCenter, style);
   }
 }
 
-function create2DMap(data, currentZoom, currentCenter) {
+function create2DMap(data, currentZoom, currentCenter, style) {
+  let opacities = data.map(d => d.bright_t31 * 0.0025);
+  console.log(opacities);
+
   let trace = [
     {
       type: 'scattermapbox',
+      //type: 'scattergeo',
+      //locationmode: 'USA-states',
       mode: 'markers',
       lat: data.map(d => d.latitude),
       lon: data.map(d => d.longitude),
       text: data.map(d => getDetail(d)),
       marker: {
-        color: 'red',
-        size: 10,
-        opacity: 0.8
+        color: 'orange',
+        size: 12,
+        opacity: opacities
       }
     }
   ];
 
   let layout = {
-    autosize: false,
+    autosize: true,
+    //geo: {
+    //  scope: 'usa',
+    //  projection: {
+    //    type: 'albers usa'
+    //  },
+    //},
     mapbox: {
-      style: 'carto-positron',
+      //style: 'carto-positron',
+      style: style || 'carto-positron',
       center: currentCenter || { lat: 37.0902, lon: -95.7129 },
       zoom: currentZoom || 3
     },
     margin: {
-      l: 10,
-      r: 10,
-      b: 10,
-      t: 10,
+      l: 0,
+      r: 0,
+      b: 0,
+      t: 0,
       pad: 0
     },
-    height: window.innerHeight - 100,
-    width: window.innerWidth - 100,
+    //height: window.innerHeight,
+    //width: window.innerWidth,
     paper_bgcolor: '#191A1A',
     plot_bgcolor: '#191A1A',
   };
 
-  let config = {responsive: true, displayModeBar: false}
+  let config = {responsive: true, displayModeBar: false, mapboxAccessToken: 'pk.eyJ1IjoiYWxleGFuZGVyaHVuZyIsImEiOiJjbG8xY2VnMXcwc2x0MmxvZHBmNTVpYjM3In0.nghzNs8d4lg_MLvHETaB_w'}
 
   Plotly.newPlot('mapContainer', trace, layout, config);
 
@@ -242,3 +314,7 @@ function getPlotlyLayout(divId) {
   }
   return currentLayout;
 }
+
+document.querySelector(".side-panel-toggle").addEventListener("click", () => {
+  document.querySelector(".wrapper").classList.toggle("side-panel-open");
+});
