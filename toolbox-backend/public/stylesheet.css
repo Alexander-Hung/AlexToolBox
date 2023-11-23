@@ -1,19 +1,69 @@
-#infoContainer {
-  position: absolute;
-  display: flex;
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
 }
 
 #mapContainer {
+  height: 100vh;
+}
+
+.wrapper {
   display: flex;
+  height: 100vh;
 }
 
-container {
-  margin-left: 5%;
+.main {
+  flex-grow: 1;
 }
 
-.center {
-  justify-content: center;
-  text-align: center;
-  align-content: center;
-  align-items: center;
+.side-panel-toggle {
+  position: absolute;
+  top: 50%;
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+
+  color: #ffffff;
+  background: #009578;
+  border: none;
+  border-radius: 5px 0 0 5px;
+  outline: none;
+  cursor: pointer;
+}
+
+.side-panel-toggle:hover {
+  background: #007960;
+}
+
+.sp-icon-close {
+  position: absolute;
+  display: none !important;
+}
+
+.side-panel {
+  position: absolute;
+  display: none;
+  width: 200px;
+  height: 100vh;
+  flex-shrink: 0;
+  padding: 20px;
+  color: #ffffff;
+  background: #009578;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.35);
+  opacity: 0.9;
+}
+
+.side-panel-open .side-panel {
+  display: initial;
+}
+
+.side-panel-open .sp-icon-open {
+  display: none !important;
+}
+
+.side-panel-open .sp-icon-close {
+  display: initial !important;
 }
