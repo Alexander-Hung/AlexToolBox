@@ -4,7 +4,7 @@ body {
   overflow: hidden;
 }
 
-#mapContainer {
+#map2D {
   height: 100vh;
 }
 
@@ -46,7 +46,7 @@ body {
 .side-panel {
   position: absolute;
   display: none;
-  width: 200px;
+  width: 300px;
   height: 100vh;
   flex-shrink: 0;
   padding: 20px;
@@ -66,4 +66,105 @@ body {
 
 .side-panel-open .sp-icon-close {
   display: initial !important;
+}
+
+#colorRangeBar {
+  width: 200px;
+  height: 20px;
+  border: 1px solid #000;
+  border-radius: 5px;
+  background: linear-gradient(to right, hsl(240, 100%, 50%), hsl(0, 100%, 50%));
+  margin: 10px;
+}
+
+#hoverInfo {
+  font-weight: bold;
+  position: absolute;
+  display: none;
+  width: 200px;
+  border: 2px solid black;
+  padding: 5px;
+  color: black;
+}
+
+.knobs,
+.layer {
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.button {
+  background-color: white;
+  position: relative;
+  width: 74px;
+  height: 36px;
+  overflow: hidden;
+}
+
+.button.r,
+.button.r .layer {
+  border-radius: 100px;
+}
+
+.checkbox {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+  z-index: 3;
+}
+
+.knobs {
+  z-index: 2;
+}
+
+.layer {
+  width: 100%;
+  background-color: #ebf7fc;
+  transition: 0.3s ease all;
+  z-index: 1;
+}
+
+
+/* Button 3 */
+#toggle3D .knobs:before {
+  content: "2D";
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: 20px;
+  height: 10px;
+  color: #fff;
+  font-size: 10px;
+  font-weight: bold;
+  text-align: center;
+  line-height: 1;
+  padding: 9px 4px;
+  background-color: #03a9f4;
+  border-radius: 50%;
+  transition: 0.3s ease all, left 0.3s cubic-bezier(0.18, 0.89, 0.35, 1.15);
+}
+
+#toggle3D .checkbox:active + .knobs:before {
+  width: 46px;
+  border-radius: 100px;
+}
+
+#toggle3D .checkbox:checked:active + .knobs:before {
+  margin-left: -26px;
+}
+
+#toggle3D .checkbox:checked + .knobs:before {
+  content: "3D";
+  left: 42px;
+  background-color: #f44336;
+}
+
+#toggle3D .checkbox:checked ~ .layer {
+  background-color: #fcebeb;
 }
