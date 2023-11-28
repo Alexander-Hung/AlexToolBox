@@ -23,8 +23,8 @@ const typeMapping = {
 };
 
 const dayNightMapping = {
-  'D' : 'Daytime fire',
-  'N' : 'Nighttime fire'
+  'D' : 'Daytime Fire',
+  'N' : 'Nighttime Fire'
 }
 
 const dayNightStyle = {
@@ -216,8 +216,19 @@ document.addEventListener('DOMContentLoaded', function() {
 function filterData(data) {
   let filteredData = data;
   const stateFilter = document.getElementById('stateFilter').value;
-  const dayNightFilter = document.getElementById('dayNightFilter').value;
-  const typeFilter = document.getElementById('typeFilter').value;
+
+  // Day night filter
+  // const dayNightFilter = document.getElementById('dayNightFilter').value;
+  const typeDay = document.getElementById('typeDay').checked;
+  const typeNight = document.getElementById('typeNight').checked;
+
+  // Type of fire filter
+  // const typeFilter = document.getElementById('typeFilter').value;
+  const typePVF = document.getElementById('typePVF').checked;
+  const typeOSLS = document.getElementById('typeOSLS').checked;
+  const typeO = document.getElementById('typeO').checked;
+  const typeAV = document.getElementById('typeAV').checked;
+  
   const dateFilter = document.getElementById('dateFilter').value;
   const monthFilter = document.getElementById('monthSlider').value;
 
@@ -228,11 +239,39 @@ function filterData(data) {
     filteredData = filteredData.filter(d => d.state_name === stateFilter);
     currentZoom = 5;
   }
-  if (dayNightFilter) {
-    filteredData = filteredData.filter(d => d.daynight === dayNightFilter);
+  // if (dayNightFilter) {
+  //   filteredData = filteredData.filter(d => d.daynight === dayNightFilter);
+  // }
+  if (typeDay || typeNight) {
+    filteredData = filteredData.filter(d => {
+      if (typeDay && d.daynight === "D") {
+        return true;
+      }
+      if (typeNight && d.daynight === "N") {
+        return true;
+      }
+      return false;
+    });
   }
-  if (typeFilter) {
-    filteredData = filteredData.filter(d => d.type === typeFilter);
+  // if (typeFilter) {
+  //   filteredData = filteredData.filter(d => d.type === typeFilter);
+  // }
+  if (typePVF || typeOSLS || typeO || typeAV) {
+    filteredData = filteredData.filter(d => {
+      if (typePVF && d.type === "0") {
+        return true;
+      }
+      if (typeOSLS && d.type === "2") {
+        return true;
+      }
+      if (typeO && d.type === "3") {
+        return true;
+      }
+      if (typeAV && d.type === "1") {
+        return true;
+      }
+      return false;
+    });
   }
   if (dateFilter) {
     filteredData = filteredData.filter(d => d.acq_date === dateFilter);
@@ -260,7 +299,7 @@ function loadYearData(year) {
     updateDataCount(filteredData.length);
     let states = document.getElementById('stateFilter').value;
     let latLon = statesLonLat[states];
-    let dayNight = document.getElementById('dayNightFilter').value;
+    let dayNight = 'N'; //document.getElementById('dayNightFilter').value; // remove day/night styling?
     let style = dayNightStyle[dayNight];
     currentZoom = statesZoom[states];
     createGeoGraph(filteredData, currentZoom, latLon, style);
@@ -305,30 +344,36 @@ loadYearData('2001');
 
 
 document.getElementById('stateFilter').addEventListener('change', () => loadYearData(document.getElementById('yearSlider').value));
-document.getElementById('dayNightFilter').addEventListener('change', () => loadYearData(document.getElementById('yearSlider').value));
-document.getElementById('typeFilter').addEventListener('change', () => loadYearData(document.getElementById('yearSlider').value));
+// document.getElementById('dayNightFilter').addEventListener('change', () => loadYearData(document.getElementById('yearSlider').value));
+document.getElementById('typeDay').addEventListener('change', () => loadYearData(document.getElementById('yearSlider').value));
+document.getElementById('typeNight').addEventListener('change', () => loadYearData(document.getElementById('yearSlider').value));
+// document.getElementById('typeFilter').addEventListener('change', () => loadYearData(document.getElementById('yearSlider').value));
+document.getElementById('typePVF').addEventListener('change', () => loadYearData(document.getElementById('yearSlider').value));
+document.getElementById('typeOSLS').addEventListener('change', () => loadYearData(document.getElementById('yearSlider').value));
+document.getElementById('typeO').addEventListener('change', () => loadYearData(document.getElementById('yearSlider').value));
+document.getElementById('typeAV').addEventListener('change', () => loadYearData(document.getElementById('yearSlider').value));
 document.getElementById('dateFilter').addEventListener('change', () => loadYearData(document.getElementById('yearSlider').value));
 document.getElementById('monthSlider').addEventListener('change', () => loadYearData(document.getElementById('yearSlider').value));
 document.getElementById('yearSlider').addEventListener('change', () => loadYearData(document.getElementById('yearSlider').value));
 
-document.addEventListener('DOMContentLoaded', () => {
-  // Reference to the checkbox inside the toggle3D div
-  const toggleCheckbox = document.querySelector('#toggle3D .checkbox');
+// document.addEventListener('DOMContentLoaded', () => {
+//   // Reference to the checkbox inside the toggle3D div
+//   const toggleCheckbox = document.querySelector('#toggle3D .checkbox');
 
-  // Event listener for the checkbox change
-  toggleCheckbox.addEventListener('change', function() {
-    if (this.checked) {
-      // Checkbox is checked - switch to 3D view
-      document.getElementById('map2D').style.display = 'none';
-      document.getElementById('map3D').style.display = 'block';
-    } else {
-      // Checkbox is not checked - switch to 2D view
-      document.getElementById('map2D').style.display = 'block';
-      document.getElementById('map3D').style.display = 'none';
-    }
-  });
+//   // Event listener for the checkbox change
+//   toggleCheckbox.addEventListener('change', function() {
+//     if (this.checked) {
+//       // Checkbox is checked - switch to 3D view
+//       document.getElementById('map2D').style.display = 'none';
+//       document.getElementById('map3D').style.display = 'block';
+//     } else {
+//       // Checkbox is not checked - switch to 2D view
+//       document.getElementById('map2D').style.display = 'block';
+//       document.getElementById('map3D').style.display = 'none';
+//     }
+//   });
 
-});
+// });
 
 
 function createGeoGraph(data, currentZoom, currentCenter, style) {
@@ -342,6 +387,8 @@ function createGeoGraph(data, currentZoom, currentCenter, style) {
 }
 
 function create2DMap(data, currentZoom, currentCenter, style) {
+  document.getElementById('toggle3D').innerHTML = "<span class=\"material-icons\">public</span> Toggle 3D View";
+
   document.getElementById('map3D').style.display = 'none';
   const container = document.getElementById('map2D');
   container.style.display = 'block';
@@ -361,7 +408,7 @@ function create2DMap(data, currentZoom, currentCenter, style) {
     const gradientStart = brightnessToColor(minValue);
     const gradientEnd = brightnessToColor(maxValue);
     const colorRangeBar = document.getElementById('colorRangeBar');
-    colorRangeBar.style.background = `linear-gradient(to right, ${gradientStart}, ${gradientEnd})`;
+    colorRangeBar.style.background = `linear-gradient(to top, ${gradientStart}, ${gradientEnd})`;
   }
 
 // Call this function with the min and max values of your data
@@ -374,7 +421,7 @@ function create2DMap(data, currentZoom, currentCenter, style) {
       mode: 'markers',
       lat: data.map(d => d.latitude),
       lon: data.map(d => d.longitude),
-      text: data.map(d => `<b>Latitude:</b> ${d.latitude}<br><b>Longitude:</b> ${d.longitude}`),
+      text: data.map(d => `<b>State:</b> ${d.state_name}<br><b>Date:</b> ${d.acq_date}<br><b>Brightness:</b> ${d.bright_t31} Kelvin`),
       hoverinfo: 'text',
       customdata: data.map(d => getDetail(d)),
       marker: {
@@ -419,6 +466,8 @@ function create2DMap(data, currentZoom, currentCenter, style) {
 }
 
 function create3DMap(data, currentCenter) {
+  document.getElementById('toggle3D').innerHTML = "<span class=\"material-icons\">map</span> Toggle 2D View";
+
   document.getElementById('map2D').style.display = 'none';
   const container = document.getElementById('map3D');
   container.style.display = 'block';
@@ -494,8 +543,7 @@ function create3DMap(data, currentCenter) {
 
     if (point) {
       // Format and display the data in hoverInfo
-      hoverInfo.innerHTML = `Latitude: ${point.lat}, Longitude: ${point.lng}`;
-
+      hoverInfo.innerHTML = `State: ${point.state}<br>Date: ${point.date}<br>Brightness: ${point.temp} Kelvin`;
       // Use the brightnessToColor function to get the color based on point data
       const pointColor = brightnessToColor(point.brightness);
 
@@ -525,20 +573,21 @@ function create3DMap(data, currentCenter) {
       .onPointClick(handlePointClick)
       .pointsMerge(false)
       .onPointHover(handlePointHover)
-  // .hexBinPointWeight('pop')
-  // .hexAltitude(d => d.sumWeight * 6e-8)
-  // .hexBinResolution(4)
-  // .hexTopColor(d => weightColor(d.sumWeight))
-  // .hexSideColor(d => weightColor(d.sumWeight))
-  // .hexBinMerge(true)
-  // .enablePointerInteraction(false) // performance improvement
-  // .pointColor('red');
-  // .pointsData(data);
-  /*issues/todo
-    only allow rotation viewing of US, not other countries
-  */
 
   world.pointOfView(currentCenter || { lat: 39.8, lng: -120.6, altitude: 1.5 });
+
+  // Define the maximum and minimum longitudes to restrict rotation
+  const minLng = -169;
+  const maxLng = -50;
+  // Add an event listener for zoom/rotation changes
+  world.onZoom((pointOfView) => {
+    if (pointOfView.lng < minLng) { // beyond Hawaii
+      world.pointOfView({ lng: minLng });
+    }
+    else if (pointOfView.lng > maxLng) { // beyond east coast
+      world.pointOfView({ lng: maxLng });
+    }
+  });
 
   function handleResize() {
     const width = container.clientWidth;
@@ -581,15 +630,14 @@ function getDetail(d) {
 
   return `
   <b>State:</b> ${d.state_name}<br>
-  <b>Latitude:</b> ${d.latitude}<br>
-  <b>Longitude:</b> ${d.longitude}<br>
   <b>Date:</b> ${d.acq_date}<br>
   <b>Time:</b> ${formatTime(d.acq_time)}<br>
-  <b>DayNight:</b> ${dayNightDescription}<br>
-  <b>Type:</b> ${typeDescription}<br>
-  <b>Satellite:</b> ${d.satellite}<br>
   <b>Brightness(Temperature):</b> ${d.bright_t31} Kelvin<br>
-
+  <b>Type:</b> ${typeDescription}<br>
+  <b>Day/Night:</b> ${dayNightDescription}<br>
+  <b>Latitude:</b> ${d.latitude}<br>
+  <b>Longitude:</b> ${d.longitude}<br>
+  <b>Satellite:</b> ${d.satellite}<br>
             `;
 }
 
@@ -605,6 +653,21 @@ function getPlotlyLayout(divId) {
   return currentLayout;
 }
 
-document.querySelector(".side-panel-toggle").addEventListener("click", () => {
-  document.querySelector(".wrapper").classList.toggle("side-panel-open");
-});
+const toggleBtn = document.querySelector('.sidebar-toggle');
+const sidebar = document.querySelector('.sidebar');
+
+toggleBtn.addEventListener('click', () => {
+  toggleBtn.classList.toggle('is-closed');
+  sidebar.classList.toggle('is-closed');
+})
+
+// Expands and contracts expandContainer within typeContainer in sidebar
+function expandContract() {
+  const container = document.getElementById("expandContainer");
+  container.classList.toggle('expanded');
+  container.classList.toggle('collapsed');
+  
+  const content = document.getElementById("expandContract");
+  content.classList.toggle('expanded');
+  content.classList.toggle('collapsed');
+}
