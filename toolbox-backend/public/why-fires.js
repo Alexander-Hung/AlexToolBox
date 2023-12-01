@@ -86,56 +86,56 @@ const statesLonLat = {
 }
 
 const statesLonLat3D = {
-  'Alabama': {lat: 32.7182, lng: -86.9023, altitude: 1.1111111111111112},
-  'Alaska': {lat: 62.4673, lng: -151.2874, altitude: 2.0},
-  'Arizona': {lat: 34.0784, lng: -112.0740, altitude: 1.1666666666666667},
-  'Arkansas': {lat: 34.7465, lng: -92.2896, altitude: 1.0606060606060606},
-  'California': {lat: 36.7783, lng: -119.4179, altitude: 1.4},
-  'Colorado': {lat: 39.1501, lng: -105.7821, altitude: 1.09375},
-  'Connecticut': {lat: 41.6032, lng: -73.0877, altitude: 0.9090909090909091},
-  'Delaware': {lat: 39.2108, lng: -75.5277, altitude: 0.9090909090909091},
-  'Florida': {lat: 27.9944, lng: -81.7603, altitude: 1.1864406779661016},
-  'Georgia': {lat: 33.0406, lng: -83.6431, altitude: 1.1475409836065575},
-  'Hawaii': {lat: 20.6987, lng: -157.6659, altitude: 1.09375},
-  'Idaho': {lat: 45.3682, lng: -114.7420, altitude: 1.2962962962962963},
-  'Illinois': {lat: 39.7331, lng: -89.3985, altitude: 1.1864406779661016},
-  'Indiana': {lat: 39.8512, lng: -85.6024, altitude: 1.1111111111111112},
-  'Iowa': {lat: 41.8780, lng: -93.0977, altitude: 1.09375},
-  'Kansas': {lat: 39.0119, lng: -98.4842, altitude: 1.129032258064516},
-  'Kentucky': {lat: 37.8393, lng: -84.2700, altitude: 1.129032258064516},
-  'Louisiana': {lat: 31.1695, lng: -91.8678, altitude: 1.1111111111111112},
-  'Maine': {lat: 45.2538, lng: -69.4455, altitude: 1.1864406779661016},
-  'Maryland': {lat: 39.0458, lng: -76.6413, altitude: 1.0769230769230769},
-  'Massachusetts': {lat: 42.1072, lng: -71.3824, altitude: 0.9459459459459459},
-  'Michigan': {lat: 44.3148, lng: -85.6024, altitude: 1.2068965517241381},
-  'Minnesota': {lat: 46.5296, lng: -94.6859, altitude: 1.25},
-  'Mississippi': {lat: 32.3547, lng: -89.3985, altitude: 1.1475409836065575},
-  'Missouri': {lat: 37.9643, lng: -91.8318, altitude: 1.1864406779661016},
-  'Montana': {lat: 46.8797, lng: -110.3626, altitude: 1.2962962962962963},
-  'Nebraska': {lat: 41.4925, lng: -99.9018, altitude: 1.2068965517241381},
-  'Nevada': {lat: 38.8026, lng: -116.4194, altitude: 1.2727272727272727},
-  'New Hampshire': {lat: 43.7939, lng: -71.5724, altitude: 1.0294117647058825},
-  'New Jersey': {lat: 40.0583, lng: -74.4057, altitude: 1.0294117647058825},
-  'New Mexico': {lat: 34.7869, lng: -105.9378, altitude: 1.2068965517241381},
-  'New York': {lat: 42.1657, lng: -74.9481, altitude: 1.2962962962962963},
-  'North Carolina': {lat: 35.7596, lng: -79.0193, altitude: 1.1475409836065575},
-  'North Dakota': {lat: 47.5515, lng: -101.0020, altitude: 1.2068965517241381},
-  'Ohio': {lat: 40.4173, lng: -82.9071, altitude: 1.1666666666666667},
-  'Oklahoma': {lat: 35.0078, lng: -97.0929, altitude: 1.1475409836065575},
-  'Oregon': {lat: 44.0282, lng: -120.3215, altitude: 1.1864406779661016},
-  'Pennsylvania': {lat: 41.2033, lng: -77.1945, altitude: 1.129032258064516},
-  'Rhode Island': {lat: 41.7201, lng: -71.4774, altitude: 0.7954545454545453},
-  'South Carolina': {lat: 33.8361, lng: -81.1637, altitude: 1.1111111111111112},
-  'South Dakota': {lat: 43.9695, lng: -99.9018, altitude: 1.25},
-  'Tennessee': {lat: 35.5175, lng: -86.5804, altitude: 1.129032258064516},
-  'Texas': {lat: 31.9686, lng: -99.9018, altitude: 1.4},
-  'Utah': {lat: 39.3210, lng: -111.0937, altitude: 1.25},
-  'Vermont': {lat: 44.0588, lng: -72.5778, altitude: 1.09375},
-  'Virginia': {lat: 37.7693, lng: -78.1700, altitude: 1.129032258064516},
-  'Washington': {lat: 47.4242, lng: -120.2272, altitude: 1.1111111111111112},
-  'West Virginia': {lat: 38.5976, lng: -80.4549, altitude: 1.1111111111111112},
-  'Wisconsin': {lat: 44.8929, lng: -89.5094, altitude: 1.1666666666666667},
-  'Wyoming': {lat: 43.0759, lng: -107.2903, altitude: 1.1666666666666667}
+  'Alabama': {lat: 32.7182, lng: -86.9023, altitude: 0.28},
+  'Alaska': {lat: 60.4673, lng: -151.2874, altitude: 0.65},
+  'Arizona': {lat: 33.0784, lng: -112.5740, altitude: 0.45},
+  'Arkansas': {lat: 34.7465, lng: -92.6896, altitude: 0.32},
+  'California': {lat: 36.7783, lng: -119.4179, altitude: 0.4},
+  'Colorado': {lat: 39.1501, lng: -105.7821, altitude: 0.35},
+  'Connecticut': {lat: 41.6032, lng: -73.0877, altitude: 0.22},
+  'Delaware': {lat: 39.2108, lng: -75.5277, altitude: 0.3},
+  'Florida': {lat: 27.9944, lng: -83.0603, altitude: 0.34},
+  'Georgia': {lat: 32.5406, lng: -83.6431, altitude: 0.36},
+  'Hawaii': {lat: 20.6987, lng: -157.6659, altitude: 0.24},
+  'Idaho': {lat: 45.3682, lng: -114.7420, altitude: 0.34},
+  'Illinois': {lat: 39.7331, lng: -89.3985, altitude: 0.34},
+  'Indiana': {lat: 39.8512, lng: -85.6024, altitude: 0.34},
+  'Iowa': {lat: 41.8780, lng: -93.0977, altitude: 0.34},
+  'Kansas': {lat: 39.0119, lng: -98.4842, altitude: 0.34},
+  'Kentucky': {lat: 37.8393, lng: -84.2700, altitude: 0.34},
+  'Louisiana': {lat: 31.1695, lng: -91.8678, altitude: 0.34},
+  'Maine': {lat: 45.2538, lng: -69.4455, altitude: 0.34},
+  'Maryland': {lat: 39.0458, lng: -76.6413, altitude: 0.34},
+  'Massachusetts': {lat: 42.1072, lng: -71.3824, altitude: 0.34},
+  'Michigan': {lat: 44.3148, lng: -85.6024, altitude: 0.34},
+  'Minnesota': {lat: 46.5296, lng: -94.6859, altitude: 0.34},
+  'Mississippi': {lat: 32.3547, lng: -89.3985, altitude: 0.34},
+  'Missouri': {lat: 37.9643, lng: -91.8318, altitude: 0.34},
+  'Montana': {lat: 46.8797, lng: -110.3626, altitude: 0.34},
+  'Nebraska': {lat: 41.4925, lng: -99.9018, altitude: 0.34},
+  'Nevada': {lat: 38.8026, lng: -116.4194, altitude: 0.34},
+  'New Hampshire': {lat: 43.7939, lng: -71.5724, altitude: 0.34},
+  'New Jersey': {lat: 40.0583, lng: -74.4057, altitude: 0.34},
+  'New Mexico': {lat: 34.7869, lng: -105.9378, altitude: 0.34},
+  'New York': {lat: 42.1657, lng: -74.9481, altitude: 0.34},
+  'North Carolina': {lat: 35.7596, lng: -79.0193, altitude: 0.34},
+  'North Dakota': {lat: 47.5515, lng: -101.0020, altitude: 0.34},
+  'Ohio': {lat: 40.4173, lng: -82.9071, altitude: 0.34},
+  'Oklahoma': {lat: 35.0078, lng: -97.0929, altitude: 0.34},
+  'Oregon': {lat: 44.0282, lng: -120.3215, altitude: 0.34},
+  'Pennsylvania': {lat: 41.2033, lng: -77.1945, altitude: 0.34},
+  'Rhode Island': {lat: 41.7201, lng: -71.4774, altitude: 0.34},
+  'South Carolina': {lat: 33.8361, lng: -81.1637, altitude: 0.34},
+  'South Dakota': {lat: 43.9695, lng: -99.9018, altitude: 0.34},
+  'Tennessee': {lat: 35.5175, lng: -86.5804, altitude: 0.34},
+  'Texas': {lat: 31.9686, lng: -99.9018, altitude: 0.34},
+  'Utah': {lat: 39.3210, lng: -111.0937, altitude: 0.34},
+  'Vermont': {lat: 44.0588, lng: -72.5778, altitude: 0.34},
+  'Virginia': {lat: 37.7693, lng: -78.1700, altitude: 0.34},
+  'Washington': {lat: 47.4242, lng: -120.2272, altitude: 0.34},
+  'West Virginia': {lat: 38.5976, lng: -80.4549, altitude: 0.34},
+  'Wisconsin': {lat: 44.8929, lng: -89.5094, altitude: 0.34},
+  'Wyoming': {lat: 43.0759, lng: -107.2903, altitude: 0.34}
 };
 
 const statesZoom = {
@@ -218,12 +218,10 @@ function filterData(data) {
   const stateFilter = document.getElementById('stateFilter').value;
 
   // Day night filter
-  // const dayNightFilter = document.getElementById('dayNightFilter').value;
   const typeDay = document.getElementById('typeDay').checked;
   const typeNight = document.getElementById('typeNight').checked;
 
   // Type of fire filter
-  // const typeFilter = document.getElementById('typeFilter').value;
   const typePVF = document.getElementById('typePVF').checked;
   const typeOSLS = document.getElementById('typeOSLS').checked;
   const typeO = document.getElementById('typeO').checked;
@@ -239,9 +237,6 @@ function filterData(data) {
     filteredData = filteredData.filter(d => d.state_name === stateFilter);
     currentZoom = 5;
   }
-  // if (dayNightFilter) {
-  //   filteredData = filteredData.filter(d => d.daynight === dayNightFilter);
-  // }
   if (typeDay || typeNight) {
     filteredData = filteredData.filter(d => {
       if (typeDay && d.daynight === "D") {
@@ -253,9 +248,6 @@ function filterData(data) {
       return false;
     });
   }
-  // if (typeFilter) {
-  //   filteredData = filteredData.filter(d => d.type === typeFilter);
-  // }
   if (typePVF || typeOSLS || typeO || typeAV) {
     filteredData = filteredData.filter(d => {
       if (typePVF && d.type === "0") {
@@ -299,7 +291,7 @@ function loadYearData(year) {
     updateDataCount(filteredData.length);
     let states = document.getElementById('stateFilter').value;
     let latLon = statesLonLat[states];
-    let dayNight = 'N'; //document.getElementById('dayNightFilter').value; // remove day/night styling?
+    let dayNight = 'N';
     let style = dayNightStyle[dayNight];
     currentZoom = statesZoom[states];
     createGeoGraph(filteredData, currentZoom, latLon, style);
@@ -344,10 +336,8 @@ loadYearData('2001');
 
 
 document.getElementById('stateFilter').addEventListener('change', () => loadYearData(document.getElementById('yearSlider').value));
-// document.getElementById('dayNightFilter').addEventListener('change', () => loadYearData(document.getElementById('yearSlider').value));
 document.getElementById('typeDay').addEventListener('change', () => loadYearData(document.getElementById('yearSlider').value));
 document.getElementById('typeNight').addEventListener('change', () => loadYearData(document.getElementById('yearSlider').value));
-// document.getElementById('typeFilter').addEventListener('change', () => loadYearData(document.getElementById('yearSlider').value));
 document.getElementById('typePVF').addEventListener('change', () => loadYearData(document.getElementById('yearSlider').value));
 document.getElementById('typeOSLS').addEventListener('change', () => loadYearData(document.getElementById('yearSlider').value));
 document.getElementById('typeO').addEventListener('change', () => loadYearData(document.getElementById('yearSlider').value));
@@ -375,6 +365,25 @@ document.getElementById('yearSlider').addEventListener('change', () => loadYearD
 
 // });
 
+// Add a button click event listener
+document.getElementById('legendToggle').addEventListener('click', function() {
+  // Toggle the legend visibility for your trace(s)
+  toggleLegendVisibility();
+});
+
+// Function to toggle the legend visibility
+function toggleLegendVisibility() {
+  var plot = document.getElementById('map2D');
+  var traces = plot.data; // Get all the traces in the plot
+
+  // Toggle the showlegend attribute for each trace
+  for (var i = 0; i < traces.length; i++) {
+    traces[i].showlegend = !traces[i].showlegend;
+  }
+
+  // Redraw the plot to reflect the legend changes
+  Plotly.redraw('map2D');
+}
 
 function createGeoGraph(data, currentZoom, currentCenter, style) {
   if (is3D) {
@@ -388,7 +397,7 @@ function createGeoGraph(data, currentZoom, currentCenter, style) {
 
 function create2DMap(data, currentZoom, currentCenter, style) {
   document.getElementById('toggle3D').innerHTML = "<span class=\"material-icons\">public</span> Toggle 3D View";
-
+  document.getElementById('legendToggle').style.display = 'block';
   document.getElementById('map3D').style.display = 'none';
   const container = document.getElementById('map2D');
   container.style.display = 'block';
@@ -409,6 +418,24 @@ function create2DMap(data, currentZoom, currentCenter, style) {
     const gradientEnd = brightnessToColor(maxValue);
     const colorRangeBar = document.getElementById('colorRangeBar');
     colorRangeBar.style.background = `linear-gradient(to top, ${gradientStart}, ${gradientEnd})`;
+
+    const colorRangeRange = document.getElementById('colorRangeRange');
+    const colorDetails = `
+    <div>
+      ${maxValue}
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      ${minValue}
+    </div>
+      `;
+    colorRangeRange.innerHTML = colorDetails;
   }
 
 // Call this function with the min and max values of your data
@@ -426,7 +453,7 @@ function create2DMap(data, currentZoom, currentCenter, style) {
       customdata: data.map(d => getDetail(d)),
       marker: {
         color: colors,
-        size: 12,
+        size: 12, 
         opacity: 0.8
       }
     }
@@ -448,25 +475,126 @@ function create2DMap(data, currentZoom, currentCenter, style) {
     },
     paper_bgcolor: '#191A1A',
     plot_bgcolor: '#191A1A',
+    legend: {
+      orientation: 'h', // Horizontal layout of legend items
+      x: 0.5, // Center the legend horizontally
+      xanchor: 'center', // Anchor the legend at its center
+      y: -0.1, // Position the legend below the bottom of the plot
+      yanchor: 'top' // Anchor the legend at its top
+    },
   };
 
   let config = {responsive: true, displayModeBar: false, mapboxAccessToken: 'pk.eyJ1IjoiYWxleGFuZGVyaHVuZyIsImEiOiJjbG8xY2VnMXcwc2x0MmxvZHBmNTVpYjM3In0.nghzNs8d4lg_MLvHETaB_w'}
 
   Plotly.newPlot('map2D', trace, layout, config);
 
-  map2D.on('plotly_click', function(data){
-    var infotext = data.points[0].data.customdata[data.points[0].pointIndex];
+  let selectedPointIndex = null; // To track the selected point
+  let allSpecialTraces = []; // To keep track of all special traces with their names
 
+  // Function to update the colors of the original data points
+  function updateOriginalDataPointColors() {
+    let newColors;
+    if (allSpecialTraces.length > 0) {
+      // Set all original data points to gray if there's at least one special trace
+      newColors = data.map(() => 'gray');
+    } else {
+      // Revert back to original colors if there are no special traces
+      newColors = data.map(d => brightnessToColor(d.bright_t31));
+    }
+
+    var update = {
+      'marker.color': newColors
+    };
+    Plotly.restyle('map2D', update);
+  }
+
+  // Function to add a special trace for a clicked data point
+  function addSpecialTrace(pointData, traceName) {
+    let specialTrace = {
+      name: traceName,
+      type: 'scattermapbox',
+      mode: 'markers',
+      lat: [pointData.lat],
+      lon: [pointData.lon],
+      text: pointData.text, // Set the hover text
+      hoverinfo: 'text', // Display text on hover
+      marker: {
+        color: 'Purple',
+        size: 15,
+        opacity: 1
+      }
+    };
+
+    Plotly.addTraces('map2D', specialTrace);
+  }
+
+// Function to remove a special trace based on the clicked point index
+  function removeSpecialTrace(clickedPointIndex) {
+
+    //console.log("in remove function: " + clickedPointIndex);
+    let traceToRemove = allSpecialTraces.find(trace => trace.name === `Data_${clickedPointIndex}`);
+    //console.log("trace To remove" + traceToRemove)
+    if (traceToRemove) {
+      let plotElement = document.getElementById('map2D');
+      let plotData = plotElement.data;
+      let traceIndex = plotData.findIndex(trace => trace.name === traceToRemove.name);
+
+      if (traceIndex !== -1) {
+        Plotly.deleteTraces('map2D', traceIndex);
+        allSpecialTraces = allSpecialTraces.filter(trace => trace.name !== `Data_${clickedPointIndex}`);
+        //console.log("allSpecialTraces" + allSpecialTraces)
+      }
+    }
+
+    //console.log("After removing a trace:", allSpecialTraces);
+  }
+
+// Event handler for clicks on the map
+  map2D.on('plotly_click', function(data){
+
+    var clickedTraceName = data.points[0].data.name;
+
+    // Ignore clicks on special traces
+    if (clickedTraceName && clickedTraceName.startsWith('Data_')) {
+      // Extracting index from the trace name
+      let ignoredIndex = clickedTraceName.split('_')[1];
+      //console.log("Clicked on a special trace, ignoring index:", ignoredIndex);
+
+      return removeSpecialTrace(ignoredIndex);
+    }
+
+    // Handling clicks on original traces
+    var clickedPointIndex = data.points[0].pointIndex;
+    //console.log("Clicked on original trace, index:", clickedPointIndex);
+
+    if (selectedPointIndex === clickedPointIndex) {
+      //console.log("Second click on the same original trace");
+      removeSpecialTrace(clickedPointIndex);
+      selectedPointIndex = null;
+    } else {
+      //console.log("First click on an original trace");
+      if (!allSpecialTraces.some(trace => trace.index === clickedPointIndex)) {
+        let traceName = `Data_${clickedPointIndex}`;
+        addSpecialTrace(data.points[0], traceName);
+        allSpecialTraces.push({ index: clickedPointIndex, name: traceName });
+      }
+      selectedPointIndex = clickedPointIndex;
+    }
+
+    // Display details of the clicked point
+    var infotext = data.points[0].data.customdata[clickedPointIndex];
     var detailsBox = document.getElementById('detailBox');
     detailsBox.style.display = 'block';
     detailsBox.innerHTML = infotext;
   });
 
   document.getElementById('showNumData').style.display = 'none';
+
 }
 
 function create3DMap(data, currentCenter) {
   document.getElementById('toggle3D').innerHTML = "<span class=\"material-icons\">map</span> Toggle 2D View";
+  document.getElementById('legendToggle').style.display = 'none';
 
   document.getElementById('map2D').style.display = 'none';
   const container = document.getElementById('map3D');
@@ -496,6 +624,7 @@ function create3DMap(data, currentCenter) {
   let minBrightness = data.reduce((min, p) => p.bright_t31 < min ? p.bright_t31 : min, data[0].bright_t31);
   let maxBrightness = data.reduce((max, p) => p.bright_t31 > max ? p.bright_t31 : max, data[0].bright_t31);
 
+
   // Normalize brightness
   let brightnessArr = data.map(obj => obj.bright_t31);
   brightnessArr = normalize(brightnessArr);
@@ -520,19 +649,60 @@ function create3DMap(data, currentCenter) {
     return `hsl(${hue}, 100%, 50%)`;
   }
 
+
+  function updateColorRangeBar(minValue, maxValue) {
+    const gradientStart = brightnessToColor(minValue * 0.0001);
+    const gradientEnd = brightnessToColor(maxValue);
+    const colorRangeBar = document.getElementById('colorRangeBar');
+    colorRangeBar.style.background = `linear-gradient(to top, ${gradientStart}, ${gradientEnd})`;
+
+    const colorRangeRange = document.getElementById('colorRangeRange');
+    const colorDetails = `
+    <div>
+      ${maxValue}
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      ${minValue}
+    </div>
+      `;
+    colorRangeRange.innerHTML = colorDetails;
+  }
+
+  updateColorRangeBar(minBrightness, maxBrightness);
+
   function handlePointClick(pointData) {
     const detailBox = document.getElementById('detailBox');
+    const date = new Date(pointData.date).toDateString();
     // Format the data to be displayed, e.g., as a string or HTML
     const dataDetails = `
-    <b>State:</b> ${pointData.state}<br> 
-    <b>Latitude:</b> ${pointData.lat}<br> 
-    <b>Longitude:</b> ${pointData.lng}<br> 
-    <b>Date:</b> ${pointData.date}<br>
-    <b>Time:</b> ${pointData.time}<br>
-    <b>DayNight:</b> ${pointData.dayNight}<br>
-    <b>Type:</b> ${pointData.type}<br>
-    <b>Satellite:</b> ${pointData.satellite}<br>
-    <b>Brightness(Temperature):</b> ${pointData.temp} Kelvin`;
+      <div>
+        <b style="font-size: 24px;">${pointData.state}</b> 
+      </div>
+      <br />
+      <div style="font-size: 18px;">
+        <b>Lat:</b> ${pointData.lat}
+        <b>Long:</b> ${pointData.lng}
+      </div>
+      <br />
+      <div style="font-size: 18px;">
+        <b>Date:</b> ${date} <br />
+        <b>Time:</b> ${pointData.time} ${pointData.dayNight}
+      </div>
+      <br />
+      <div style="font-size: 18px;">
+        <b>Brightness:</b> ${pointData.temp} K
+        <div id="colorRangeBarPoint"></div>
+        <b>Type:</b> ${pointData.type}
+      </div>
+      <br />
+      <i style="color: darkgray;">Taken by Satellite ${pointData.satellite}</i>
+    `;
 
     // Display the data in the detailBox
     detailBox.innerHTML = dataDetails;
@@ -605,8 +775,6 @@ function create3DMap(data, currentCenter) {
 }
 
 function normalize(x) {
-  let xminimum = x.reduce((min, current) => (current < min) ? current : min)
-  let xmaximum = x.reduce((max, current) => (current > max) ? current : max)
   let xnormalized = x.map((item) => (item * 0.0001));
   return xnormalized;
 }
@@ -627,20 +795,43 @@ function updateDataCount(count) {
 function getDetail(d) {
   const typeDescription = typeMapping[d.type] || 'Unknown';
   const dayNightDescription = dayNightMapping[d.daynight] || 'Unknown';
+  const date = new Date(d.acq_date).toDateString();
 
   return `
-  <b>State:</b> ${d.state_name}<br>
-  <b>Date:</b> ${d.acq_date}<br>
-  <b>Time:</b> ${formatTime(d.acq_time)}<br>
-  <b>Brightness(Temperature):</b> ${d.bright_t31} Kelvin<br>
-  <b>Type:</b> ${typeDescription}<br>
-  <b>Day/Night:</b> ${dayNightDescription}<br>
-  <b>Latitude:</b> ${d.latitude}<br>
-  <b>Longitude:</b> ${d.longitude}<br>
-  <b>Satellite:</b> ${d.satellite}<br>
-            `;
+      <div>
+        <b style="font-size: 24px;">${d.state_name}</b> 
+      </div>
+      <br />
+      <div style="font-size: 18px;">
+        <b>Lat:</b> ${d.latitude}
+        <b>Long:</b> ${d.longitude}
+      </div>
+      <br />
+      <div style="font-size: 18px;">
+        <b>Date:</b> ${date} <br />
+        <b>Time:</b> ${formatTime(d.acq_time)} ${dayNightDescription}
+      </div>
+      <br />
+      <div style="font-size: 18px;">
+        <b>Brightness:</b> ${d.bright_t31} K
+        <div id="colorRangeBarPoint"></div>
+        <b>Type:</b> ${typeDescription}
+      </div>
+      <br />
+      <i style="color: darkgray;">Taken by Satellite ${d.satellite}</i> 
+  `;
 }
-
+/*
+<div title="Where the fire took place"><b>State:</b> ${d.state_name}</div>
+<div title="When the fire took place"><b>Date:</b> ${d.acq_date}</div>
+<div title="What time the fire took place"><b>Time:</b> ${formatTime(d.acq_time)}</div>
+<div title="Temperature of the fire measured in Kelvin"><b>Brightness(Temperature):</b> ${d.bright_t31} Kelvin</div>
+<div title="What the cause of the fire was"><b>Type:</b> ${typeDescription}</div>
+<div title="Whether the fire took place during the day or night"><b>Day/Night:</b> ${dayNightDescription}</div>
+<div title="Approximate latitude of the fire"><b>Latitude:</b> ${d.latitude}</div>
+<div title="Approximate longitude of the fire"><b>Longitude:</b> ${d.longitude}</div>
+<div title="Name of the Satellite that measured the data"><b>Satellite:</b> ${d.satellite}</div>
+*/
 function getPlotlyLayout(divId) {
   let currentLayout = {};
   const gd = document.getElementById(divId);
@@ -671,3 +862,21 @@ function expandContract() {
   content.classList.toggle('expanded');
   content.classList.toggle('collapsed');
 }
+
+function expandContract2() {
+  const container = document.getElementById("expandContainer2");
+  container.classList.toggle('expanded');
+  container.classList.toggle('collapsed');
+
+  const content = document.getElementById("expandContract2");
+  content.classList.toggle('expanded');
+  content.classList.toggle('collapsed');
+}
+
+var input = document.getElementById("showNumDataInput");
+input.addEventListener("keypress", function(event) {
+  if (event.key === "Enter") {
+    event.preventDefault();
+    document.getElementById("showNumDataButton").click();
+  }
+});

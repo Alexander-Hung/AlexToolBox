@@ -1,11 +1,20 @@
+:root {
+  --fontSize: 16px;
+  --bgColor: #3c3f41;
+  --primaryColor: #2c3e50;
+  --secondaryColor: #34495e;
+  --toggleColor: #f39c12;
+}
+
 body {
     margin: 0;
     padding: 0;
     overflow: hidden;
     font-family: 'Roboto', sans-serif;
+    font-size: 16px;
 }
 
-#map2D, map3D {
+#map2D, #map3D {
     height: 100vh;
 }
 
@@ -17,7 +26,14 @@ body {
   margin: 15px;
   padding: 15px;
   color: white;
-  background-color: #3c3f41;
+  background-color: var(--bgColor);
+}
+
+#detailBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
 .sidebar {
@@ -30,8 +46,13 @@ body {
     top: 0;
     left: 0;
     color: white;
-    background-color: #3c3f41;
+    background-color: rgb(60, 63, 65, 0.9); /* rgb equivalent of bg color #3c3f41 with .9 opacity*/
     transition: .5s;
+}
+
+.sidebar-footer {
+  position: absolute;
+  bottom: 3em;
 }
 
 .sidebar.is-closed {
@@ -41,14 +62,14 @@ body {
 .sidebar-toggle {
     width: 60px;
     height: 60px;
-    margin-left: 1.5em;
+    margin-left: 1.8em;
     align-self: center;
     cursor: pointer;
     transition: .5s;
     border: none;
     border-radius: 0 5px 5px 0;
     color: white;
-    background-color: #3c3f41;
+    background-color: rgb(60, 63, 65, 0.9);  /* rgb equivalent of bg color #3c3f41 with .9 opacity */
 }
 
 .sidebar-toggle .icon-open {
@@ -75,10 +96,10 @@ select {
     flex: 1;
     padding: 0 1em;
     color: #fff;
-    background-color: #2c3e50;
+    background-color: var(--primaryColor);
     background-image: none;
     cursor: pointer;
-    font-size: 18px;
+    font-size: var(--fontSize);
 }
 
 .select {
@@ -96,23 +117,19 @@ select {
     top: 0;
     right: 0;
     padding: 1em;
-    background-color: #34495e;
+    background-color: var(--secondaryColor);
     transition: .25s all ease;
     pointer-events: none;
 }
 
 .select:hover::after {
-    color: #f39c12;
+    color: var(--toggleColor);
 }
 
 /* Type Container */
-#typeContainer {
-
-}
-
 #topSection {
   border-radius: .25em;
-  background-color: #2c3e50;
+  background-color: var(--primaryColor);
   width: 17.5em;
   height: 3em;
   box-sizing: border-box;
@@ -133,7 +150,7 @@ select {
 #topButton button {
   width: 100%;
   height: 100%;
-  background-color: #34495e;
+  background-color: var(--secondaryColor);
   border: 0;
 }
 
@@ -143,20 +160,20 @@ select {
 }
 
 #topButton button:hover::after {
-  color: #f39c12;
+  color: var(--toggleColor);
   transition: .25s all ease;
 }
 
 #expandContainer {
  overflow: hidden;
- background-color: #2c3e50;
+ background-color: var(--primaryColor);
  padding: 0px;
  transition: all 0.5s;
 }
 
 #expandContainer.expanded {
   overflow: hidden;
-  background-color: #2c3e50;
+  background-color: var(--primaryColor);
   padding: 15px;
  }
 
@@ -168,14 +185,81 @@ select {
 #expandContract.expanded {
   margin-top: 0;
 }
+
+/* Styles for topSection2 */
+#topSection2 {
+  border-radius: .25em;
+  background-color: #2c3e50;
+  width: 17.5em;
+  height: 3em;
+  box-sizing: border-box;
+}
+
+/* Styles for topTitle2 */
+#topTitle2 {
+  display: inline-block;
+  padding: 15px;
+}
+
+/* Styles for topButton2 */
+#topButton2 {
+  display: inline;
+  float: right;
+  width: 3em;
+  height: 3em;
+}
+
+#topButton2 button {
+  width: 100%;
+  height: 100%;
+  background-color: #34495e;
+  border: 0;
+}
+
+#topButton2 button::after {
+  content: '\25BC';
+  color: #fff;
+}
+
+#topButton2 button:hover::after {
+  color: #f39c12;
+  transition: .25s all ease;
+}
+
+/* Styles for nope2 (assuming it's a different element) */
+#nope2 {
+  /* Define styles for nope2 as needed */
+}
+
+/* Styles for expandContainer2 */
+#expandContainer2 {
+  overflow: hidden;
+  background-color: #2c3e50;
+  padding: 0px;
+  transition: all 0.5s;
+}
+
+#expandContainer2.expanded {
+  overflow: hidden;
+  background-color: #2c3e50;
+  padding: 15px;
+}
+
+/* Styles for expandContract2 */
+#expandContract2 {
+  margin-top: -100%;
+  transition: all 0.5s;
+}
+
+#expandContract2.expanded {
+  margin-top: 0;
+}
+
 /* End of Type Container */
 
 /* Checkbox */
 .checkbox-wrapper-29 {
-  --size: 1rem;
-  --boxBg: #34495e;
-  --containerBg: #2c3e50;
-  font-size: var(--size);
+  font-size: var(--fontSize);
 }
 
 .checkbox-wrapper-29 *,
@@ -190,7 +274,7 @@ select {
 }
 
 .checkbox-wrapper-29 .checkbox__label {
-  width: var(--size);
+  width: var(--fontSize);
   position: relative;
   top: 3px;
 }
@@ -198,25 +282,25 @@ select {
 .checkbox-wrapper-29 .checkbox__label:before {
   content: ' ';
   display: block;
-  height: var(--size);
-  width: var(--size);
+  height: var(--fontSize);
+  width: var(--fontSize);
   border: 0;
   position: absolute;
-  top: calc(var(--size) * 0.125);
+  top: calc(var(--fontSize) * 0.125);
   left: 0;
-  background: var(--boxBg);  
+  background: var(--secondaryColor);  
 }
 
 .checkbox-wrapper-29 .checkbox__label:after {
   content: ' ';
   display: block;
-  height: var(--size);
-  width: var(--size);
+  height: var(--fontSize);
+  width: var(--fontSize);
   transition: 200ms;
   position: absolute;
-  top: calc(var(--size) * 0.125);
+  top: calc(var(--fontSize) * 0.125);
   left: 0;
-  background: var(--boxBg);  
+  background: var(--secondaryColor);  
 }
 
 .checkbox-wrapper-29 .checkbox__label:after {
@@ -224,13 +308,13 @@ select {
 }
 
 .checkbox-wrapper-29 .checkbox__input:checked ~ .checkbox__label:after {
-  border: calc(var(--size) * .14) solid white;
+  border: calc(var(--fontSize) * .14) solid white;
   border-top-style: none; 
   border-right-style: none;
   -ms-transform: rotate(-45deg); /* IE9 */
   transform: rotate(-45deg);
-  height: calc(var(--size) * .5);
-  background: var(--containerBg);
+  height: calc(var(--fontSize) * .5);
+  background: var(--primaryColor);
 }
 
 .checkbox-wrapper-29 .checkbox {
@@ -245,12 +329,12 @@ select {
 }
 
 .checkbox-wrapper-29 .checkbox__label {
-  margin-right: calc(var(--size) * 0.45);
+  margin-right: calc(var(--fontSize) * 0.45);
 }
 /* End of Checkbox */
 
 input[type="date"] {
-    background-color: #2c3e50;
+    background-color: var(--primaryColor);
     padding: 15px;
     color: #ffffff;
     font-size: 18px;
@@ -272,24 +356,11 @@ input[type="date"] {
     filter: invert(80%) sepia(39%) saturate(6499%) hue-rotate(356deg) brightness(103%) contrast(91%);
 }
 
-.side-panel {
-  position: absolute;
-  display: none;
-  width: 300px;
-  height: 100vh;
-  flex-shrink: 0;
-  padding: 20px;
-  color: #ffffff;
-  background: #009578;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.35);
-  opacity: 0.9;
-}
-
-#toggle3D {
+#toggle3D  {
     align-self: end;
     width: 15.5em;
     height: 3em;
-    background-color: #2c3e50;
+    background-color: var(--primaryColor);
     border-radius: .25em;
     border: none;
     color: #fff;
@@ -302,12 +373,33 @@ input[type="date"] {
 }
 
 #toggle3D:hover {
-    color: #f39c12;
+    color: var(--toggleColor);
+}
+
+#legendToggle  {
+  margin-top: 20px;
+  align-self: end;
+  width: 15.5em;
+  height: 3em;
+  background-color: var(--primaryColor);
+  border-radius: .25em;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  font-size: 18px;
+  padding: 9px 20px 8px;
+  text-align: center;
+  transition: .25s all ease;
+  vertical-align: middle;
+}
+
+#legendToggle:hover {
+  color: var(--toggleColor);
 }
 
 #colorRangeBar {
     position: fixed;
-    bottom: 0;
+    bottom: 50px;
     right: 0;
     z-index: 100;
     width: 20px;
@@ -316,6 +408,15 @@ input[type="date"] {
     border-radius: 5px;
     background: linear-gradient(to top, hsl(240, 100%, 50%), hsl(0, 100%, 50%));
     margin: 10px;
+}
+
+#colorRangeBarPoint {
+  width: 90%;
+  height: 20px;
+  border: 1px solid #000;
+  border-radius: 5px;
+  background: linear-gradient(to right, hsl(240, 100%, 50%), hsl(0, 100%, 50%));
+  margin: 10px;
 }
 
 #hoverInfo {
@@ -328,84 +429,119 @@ input[type="date"] {
   color: black;
 }
 
-.knobs,
-.layer {
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
+#showNumData {
+  padding-bottom: 20px;
+  margin-top: 10px;
+  background-color: var(--primaryColor);
 }
 
-.button {
-  background-color: white;
+.tooltip {
   position: relative;
-  width: 74px;
-  height: 36px;
-  overflow: hidden;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+  margin: 10px;
 }
 
-.button.r,
-.button.r .layer {
-  border-radius: 100px;
-}
-
-/* .checkbox {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  padding: 0;
-  margin: 0;
-  opacity: 0;
-  cursor: pointer;
-  z-index: 3;
-} */
-
-.knobs {
-  z-index: 2;
-}
-
-.layer {
-  width: 100%;
-  background-color: #ebf7fc;
-  transition: 0.3s ease all;
-  z-index: 1;
-}
-
-
-/* Button 3 */
-#toggle3D .knobs:before {
-  content: "2D";
-  position: absolute;
-  top: 4px;
-  left: 4px;
-  width: 20px;
-  height: 10px;
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
   color: #fff;
-  font-size: 10px;
-  font-weight: bold;
   text-align: center;
-  line-height: 1;
-  padding: 9px 4px;
-  background-color: #03a9f4;
-  border-radius: 50%;
-  transition: 0.3s ease all, left 0.3s cubic-bezier(0.18, 0.89, 0.35, 1.15);
+  border-radius: 6px;
+  padding: 5px 0;
+
+  /* Position the tooltip */
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -60px; /* Use half of the width (120/2 = 60), to center the tooltip */
 }
 
-#toggle3D .checkbox:active + .knobs:before {
-  width: 46px;
-  border-radius: 100px;
+.tooltip:hover .tooltiptext {
+  width: 200px;
+  opacity: 0.9;
+  visibility: visible;
 }
 
-#toggle3D .checkbox:checked:active + .knobs:before {
-  margin-left: -26px;
+#colorRangeRange {
+  position: absolute;
+  bottom: 50px;
+  right: 22px;
+  margin: 0px;
+  padding: 15px;
+  color: white;
 }
 
-#toggle3D .checkbox:checked + .knobs:before {
-  content: "3D";
-  left: 42px;
-  background-color: #f44336;
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-#toggle3D .checkbox:checked ~ .layer {
-  background-color: #fcebeb;
+.Row {
+  display: table;
+  width: 100%; /*Optional*/
+  table-layout: fixed; /*Optional*/
+  border-spacing: 10px; /*Optional*/
+}
+.Column {
+  display: table-cell;
+  color: white;
+}
+
+#aboutUs {
+  text-align: center;
+}
+
+#aboutUs a {
+  text-decoration-line: none;
+  color: white;
+}
+
+#aboutUs a:hover {
+  color: #f39c12;
+  transition: .25s all ease;
+  text-decoration-line: none;
+}
+
+#github {
+  text-align: center;
+}
+
+#github a {
+  text-decoration-line: none;
+  color: white;
+}
+
+#github a:hover {
+  color: #f39c12;
+  transition: .25s all ease;
+  text-decoration-line: none;
+}
+
+#showNumDataInput {
+  margin: 10px;
+  margin-left: 20px; !important;
+  margin-right: 0px; !important;
+  height: 20px;
+}
+
+#showNumDataButton {
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  padding: 5px;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border: white solid 2px;
+  color: white;
+  background: #2c3e50;
+}
+
+#showNumDataButton:hover {
+  color: #f39c12;
+  transition: .25s all ease;
+  text-decoration-line: none;
 }

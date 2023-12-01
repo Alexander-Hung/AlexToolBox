@@ -1,0 +1,122 @@
+html, body {
+  margin:0;
+  padding:0;
+  height:100%;
+  min-height:100%;
+  position:relative;
+}
+
+#nav {
+  background-color: #3c3f41;
+  height: 80px;
+  padding-top: 20px;
+}
+
+#footer {
+  background-color: #3c3f41;
+  width:100%;
+  height: 100px;
+}
+
+#team {
+  margin-bottom: 50px;
+}
+
+#aboutProject {
+  margin-bottom: 50px;
+}
+
+.Row {
+  display: table;
+  width: 100%; /*Optional*/
+  table-layout: fixed; /*Optional*/
+  border-spacing: 10px; /*Optional*/
+}
+
+.Column {
+  display: table-cell;
+  color: white;
+  font-size: 25px;
+}
+
+#Github {
+  text-align: end;
+}
+
+#AboutUs {
+  text-align: center;
+  font-size: 30px;
+}
+
+a {
+  margin: 10px;
+  text-decoration-line: none;
+  color: white;
+  text-align: end;
+}
+
+a:hover {
+  color: #f39c12;
+  transition: .25s all ease;
+  text-decoration-line: none;
+}
+
+h2, h3 {
+  text-decoration-line: underline;
+}
+
+h1 {
+  text-align: center;
+}
+
+.container {
+  position: relative;
+  width: 50%;
+  display: table-cell;
+  color: white;
+  font-size: 25px;
+}
+
+.container:hover .overlay {
+  opacity: 1;
+}
+
+.image {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: .5s ease;
+  background-color: #3c3f41;
+}
+
+.text {
+  color: white;
+  font-size: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+#project {
+  text-align: center;
+}
+
+h2 a{
+  color: #3c3f41; !important;
+
+}

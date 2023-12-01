@@ -28,8 +28,18 @@
         <img src="./images/WHY_FIRES.png"
              width="215"
              height="39"
-             alt="WHY FIRES"><br /><br />
+             alt="WHY FIRES"
+             class="center"/>
+        <hr/>
+        <div class="Row">
+          <div class="Column" id="aboutUs"><a href="aboutUs.html">About Us</a></div>
+          <div class="Column" id="github"><a href="https://github.com/why-fires/why-fires-app">Github</a></div>
+        </div>
+        <hr/>
+        <br />
         
+        <p>Explore past fires and hotspots with precision in 2D and 3D!</p>
+
         <div id="filter">
           <div class="select">
             <select id="stateFilter">
@@ -96,34 +106,34 @@
                 <button id="nope" onclick="expandContract()"></button>
               </div>
             </div>
-            
-            <div id="expandContainer" class="collapsed"> <!-- Expands and contracts-->
-              <div id="expandContract" class="collapsed">
+
+            <div id="expandContainer" class="expanded"> <!-- Expands and contracts-->
+              <div id="expandContract" class="expanded">
                 <p><b>Type of Fire</b></p>
                 <div class="checkbox-wrapper-29">
                   <label class="checkbox">
-                    <input type="checkbox" class="checkbox__input" id="typePVF" value="0" checked />  
+                    <input type="checkbox" class="checkbox__input" id="typePVF" value="0" checked />
                     <span class="checkbox__label"></span>
                     &#128293 Presumed Vegetation Fire
                   </label>
                 </div>
                 <div class="checkbox-wrapper-29">
                   <label class="checkbox">
-                    <input type="checkbox" class="checkbox__input" id="typeOSLS" value="2" checked />  
+                    <input type="checkbox" class="checkbox__input" id="typeOSLS" value="2" checked />
                     <span class="checkbox__label"></span>
                     &#128270 Other Static Land Source
                   </label>
                 </div>
                 <div class="checkbox-wrapper-29">
                   <label class="checkbox">
-                    <input type="checkbox" class="checkbox__input" id="typeO" value="3" checked />  
+                    <input type="checkbox" class="checkbox__input" id="typeO" value="3" checked />
                     <span class="checkbox__label"></span>
                     &#127754 Offshore
                   </label>
                 </div>
                 <div class="checkbox-wrapper-29">
                   <label class="checkbox">
-                    <input type="checkbox" class="checkbox__input" id="typeAV" value="1" checked />  
+                    <input type="checkbox" class="checkbox__input" id="typeAV" value="1" checked />
                     <span class="checkbox__label"></span>
                     &#127755 Active Volcano
                   </label>
@@ -132,14 +142,14 @@
                 <p><b>Time of Fire</b></p>
                 <div class="checkbox-wrapper-29">
                   <label class="checkbox">
-                    <input type="checkbox" class="checkbox__input" id="typeDay" value="D" checked />  
+                    <input type="checkbox" class="checkbox__input" id="typeDay" value="D" checked />
                     <span class="checkbox__label"></span>
                     &#9728;&#65039; Day
                   </label>
                 </div>
                 <div class="checkbox-wrapper-29">
                   <label class="checkbox">
-                    <input type="checkbox" class="checkbox__input" id="typeNight" value="N" checked />  
+                    <input type="checkbox" class="checkbox__input" id="typeNight" value="N" checked />
                     <span class="checkbox__label"></span>
                     &#127769 Night
                   </label>
@@ -147,52 +157,68 @@
               </div>
             </div>
           </div>
-          
-          <br />
-
-          <!-- <div class="select">
-            <select id="dayNightFilter">
-              <option value="">Day/Night</option>
-              <option value="D">Day</option>
-              <option value="N">Night</option>
-            </select>
-          </div>
 
           <br />
 
-          <div class="select">
-            <select id="typeFilter">
-              <option value="">Select Type</option>
-              <option value="0">&#128293 Presumed Vegetation Fire</option>
-              <option value="2">&#128270 Other Static Land Source</option>
-              <option value="3">&#127754 Offshore</option>
-              <option value="1">&#127755 Active Volcano</option>
-            </select>
-          </div>
+          <div id="dateContainer">
 
-          <br /> -->
+            <div id="topSection2"> <!-- Always displays -->
+              <div id="topTitle2">Date/Time</div>
+              <div id="topButton2">
+                <button id="nope2" onclick="expandContract2()"></button>
+              </div>
+            </div>
 
-          <input type="date" id="dateFilter">
-        </div>
+            <div id="expandContainer2" class="collapsed"> <!-- Expands and contracts-->
+              <div id="expandContract2" class="collapsed">
+                <p><b>Years</b></p>
+                <div class="checkbox-wrapper-29">
+                  <label class="checkbox">
+                    <input type="range" id="yearSlider" min="2001" max="2022" value="2001">
+                    <span id="yearDisplay">2001</span>
+                  </label>
+                </div>
 
-        <div id="slider">
-          <input type="range" id="monthSlider" min="0" max="12" value="0">
-          <span id="monthDisplay">All Months</span>
-          <input type="range" id="yearSlider" min="2001" max="2022" value="2001">
-          <span id="yearDisplay">2001</span>
+                <p><b>Months</b></p>
+                <div class="checkbox-wrapper-29">
+                  <label class="checkbox">
+                    <input type="range" id="monthSlider" min="0" max="12" value="0">
+                    <span id="monthDisplay">All Months</span>
+                  </label>
+                </div>
+
+                <p><b>Date</b></p>
+                <div class="checkbox-wrapper-29">
+                  <label class="checkbox">
+                    <input type="date" class="checkbox__input" id="dateFilter"/>
+                  </label>
+                </div>
+              </div>
+            </div>
+
+          </div> <!-- id dateContainer -->
+
+          <button id="legendToggle" style="display: none;">Toggle Legend</button>
         </div>
 
         <div id="hoverInfo"></div>
 
         <div id="showNumData">
+          <div class="tooltip"><b>Number of Data:</b>
+            <span class="tooltiptext">To reduce lag, Please Enter number display data from highest temperature to lowest temperature</span>
+          </div>
           <input type="number" id="showNumDataInput" placeholder="Enter number of data points">
           <button id="showNumDataButton">Apply</button>
         </div>
 
-        <button id="toggle3D">Toggle 3D View</button>
+        <div class="sidebar-footer">
+          <div id="dataCount">
+            <div title="The total amount of data points collected in the selection"><b>Total Data Points:</b> <span id="totalDataPoints">0</span></div>
+          </div>
+          <button id="toggle3D">Toggle 3D View</button>
+        </div>
 
       </div>
-
 
 
       <button class="sidebar-toggle">
@@ -201,15 +227,23 @@
       </button>
     </div>
 
-    <div id="colorRangeBar"></div>
+    <div id="colorRangeBar">
+    </div>
+
+    <div id="colorRangeRange">
+      <p>
+        This is a placeholder.
+      </p>
+    </div>
+
   </div>
 
   <div id="detailContainer">
-    <div id="dataCount">
-      <b>Total Data Points:</b> <span id="totalDataPoints">0</span>
+    <div id="detailBox">
+      <p>
+        Select a point to learn more about the wildfire.
+      </p>
     </div>
-    <hr />
-    <div id="detailBox">Click on a data point to see the details here.</div>
   </div>
 
 </main>
