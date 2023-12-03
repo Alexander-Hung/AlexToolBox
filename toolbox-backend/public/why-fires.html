@@ -36,9 +36,9 @@
           <div class="Column" id="github"><a href="https://github.com/why-fires/why-fires-app">Github</a></div>
         </div>
         <hr/>
-        <br />
         
-        <p>Explore past fires and hotspots with precision in 2D and 3D!</p>
+        <p style="text-align: center;">Explore past fires and hotspots with precision in 2D and 3D!</p>
+        <br />
 
         <div id="filter">
           <div class="select">
@@ -197,37 +197,41 @@
             </div>
 
           </div> <!-- id dateContainer -->
-
-          <button id="legendToggle" style="display: none;">Toggle Legend</button>
         </div>
 
-        <div id="hoverInfo"></div>
+        <br />
 
         <div id="showNumData">
-          <div class="tooltip"><b>Number of Data:</b>
-            <span class="tooltiptext">To reduce lag, Please Enter number display data from highest temperature to lowest temperature</span>
+          <div class="tooltip">Edit Number of Data Points:
+            <span class="tooltiptext">Enter number of points to display. Data shows from highest to lowest temperature.</span>
           </div>
-          <input type="number" id="showNumDataInput" placeholder="Enter number of data points">
+          <input type="number" id="showNumDataInput" placeholder="1000">
           <button id="showNumDataButton">Apply</button>
         </div>
 
-        <div class="sidebar-footer">
-          <div id="dataCount">
-            <div title="The total amount of data points collected in the selection"><b>Total Data Points:</b> <span id="totalDataPoints">0</span></div>
-          </div>
-          <button id="toggle3D">Toggle 3D View</button>
-        </div>
+        <div style="height: 27vh"></div> <!-- Filler space to invoke overflow scrolling -->
 
       </div>
 
-
-      <button class="sidebar-toggle">
-        <span class="material-icons icon-open">keyboard_double_arrow_right</span>
-        <span class="material-icons icon-close">keyboard_double_arrow_left</span>
-      </button>
     </div>
 
+    <div id="hoverInfo"></div> <!-- hover info for 3D points -->
+
+    <div class="sidebar-footer">
+      <div id="dataCount">
+        <div title="The total amount of data points collected in the selection"><b>Total Data Points:</b> <span id="totalDataPoints">0</span></div>
+      </div>
+      <br />
+      <button id="toggle3D">Toggle 3D View</button>
+    </div>
+
+    <button class="sidebar-toggle">
+      <span class="material-icons icon-open">keyboard_double_arrow_right</span>
+      <span class="material-icons icon-close">keyboard_double_arrow_left</span>
+    </button>
+
     <div id="colorRangeBar">
+      <div id="colorRangePoint"></div>
     </div>
 
     <div id="colorRangeRange">
@@ -239,10 +243,9 @@
   </div>
 
   <div id="detailContainer">
+    <div id="closeButton" class="material-icons" onclick="closeDetailContainer()">close</div>
     <div id="detailBox">
-      <p>
-        Select a point to learn more about the wildfire.
-      </p>
+      <p id="detailBoxText"></p>
     </div>
   </div>
 

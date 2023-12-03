@@ -366,24 +366,7 @@ document.getElementById('yearSlider').addEventListener('change', () => loadYearD
 // });
 
 // Add a button click event listener
-document.getElementById('legendToggle').addEventListener('click', function() {
-  // Toggle the legend visibility for your trace(s)
-  toggleLegendVisibility();
-});
 
-// Function to toggle the legend visibility
-function toggleLegendVisibility() {
-  var plot = document.getElementById('map2D');
-  var traces = plot.data; // Get all the traces in the plot
-
-  // Toggle the showlegend attribute for each trace
-  for (var i = 0; i < traces.length; i++) {
-    traces[i].showlegend = !traces[i].showlegend;
-  }
-
-  // Redraw the plot to reflect the legend changes
-  Plotly.redraw('map2D');
-}
 
 function createGeoGraph(data, currentZoom, currentCenter, style) {
   if (is3D) {
@@ -397,7 +380,6 @@ function createGeoGraph(data, currentZoom, currentCenter, style) {
 
 function create2DMap(data, currentZoom, currentCenter, style) {
   document.getElementById('toggle3D').innerHTML = "<span class=\"material-icons\">public</span> Toggle 3D View";
-  document.getElementById('legendToggle').style.display = 'block';
   document.getElementById('map3D').style.display = 'none';
   const container = document.getElementById('map2D');
   container.style.display = 'block';
@@ -411,7 +393,6 @@ function create2DMap(data, currentZoom, currentCenter, style) {
     const hue = (1 - brightness / max) * 240;
     return `hsl(${hue}, 100%, 50%)`;
   }
-
 
   function updateColorRangeBar(minValue, maxValue) {
     const gradientStart = brightnessToColor(minValue);
@@ -438,9 +419,45 @@ function create2DMap(data, currentZoom, currentCenter, style) {
     colorRangeRange.innerHTML = colorDetails;
   }
 
+  function updateColorRangePoint(brightness) {
+    const colorRangePoint = document.getElementById('colorRangePoint');
+    const normalized = (brightness - minBrightness) / (maxBrightness - minBrightness);
+    const value = normalized * 90;
+    colorRangePoint.style.bottom = `${value}%`;
+    colorRangePoint.style.display = 'initial';
+  }
+
+  function getDetail(d) {
+    const typeDescription = typeMapping[d.type] || 'Unknown';
+    const dayNightDescription = dayNightMapping[d.daynight] || 'Unknown';
+    const date = new Date(d.acq_date).toDateString();
+
+    return `
+      <div>
+        <b style="font-size: 24px;">${d.state_name}</b> 
+      </div>
+      <br />
+      <div style="font-size: 18px;">
+        <b title="Approximate latitude of the fire">Lat:</b> ${d.latitude}
+        <b title="Approximate longitude of the fire">Long:</b> ${d.longitude}
+      </div>
+      <br />
+      <div style="font-size: 18px;">
+        <b>Date:</b> ${date} <br />
+        <b>Time:</b> ${formatTime(d.acq_time)} UTC (${dayNightDescription})
+      </div>
+      <br />
+      <div style="font-size: 18px;">
+        <b title="Brightness temperature of the fire measured in Kelvin">Temperature:</b> ${d.bright_t31} Kelvin <br /><br />
+        <b>Type:</b> ${typeDescription}
+      </div>
+      <br />
+      <i style="color: darkgray;">Taken by Satellite ${d.satellite}</i> 
+  `;
+  }
+
 // Call this function with the min and max values of your data
   updateColorRangeBar(minBrightness, maxBrightness);
-
 
   let trace = [
     {
@@ -448,14 +465,16 @@ function create2DMap(data, currentZoom, currentCenter, style) {
       mode: 'markers',
       lat: data.map(d => d.latitude),
       lon: data.map(d => d.longitude),
-      text: data.map(d => `<b>State:</b> ${d.state_name}<br><b>Date:</b> ${d.acq_date}<br><b>Brightness:</b> ${d.bright_t31} Kelvin`),
+      text: data.map(d => `<b>State:</b> ${d.state_name}<br><b>Date:</b> ${d.acq_date}<br><b>Temperature:</b> ${d.bright_t31} Kelvin`),
       hoverinfo: 'text',
       customdata: data.map(d => getDetail(d)),
+      brightness: data.map(d => d.bright_t31),
       marker: {
         color: colors,
         size: 12, 
         opacity: 0.8
-      }
+      },
+      showlegend: false
     }
   ];
 
@@ -519,10 +538,11 @@ function create2DMap(data, currentZoom, currentCenter, style) {
       text: pointData.text, // Set the hover text
       hoverinfo: 'text', // Display text on hover
       marker: {
-        color: 'Purple',
+        color: 'purple',
         size: 15,
         opacity: 1
-      }
+      },
+      showlegend: false
     };
 
     Plotly.addTraces('map2D', specialTrace);
@@ -582,19 +602,19 @@ function create2DMap(data, currentZoom, currentCenter, style) {
     }
 
     // Display details of the clicked point
-    var infotext = data.points[0].data.customdata[clickedPointIndex];
-    var detailsBox = document.getElementById('detailBox');
-    detailsBox.style.display = 'block';
-    detailsBox.innerHTML = infotext;
+    openDetailContainer(data.points[0].data.customdata[clickedPointIndex]);
+
+    updateColorRangePoint(Number(data.points[0].data.brightness[clickedPointIndex]));
   });
 
-  document.getElementById('showNumData').style.display = 'none';
+  // Default 2D detail container
+  openDetailContainer("Select a point to learn more about the wildfire.");
 
+  document.getElementById('showNumData').style.display = 'none';
 }
 
 function create3DMap(data, currentCenter) {
   document.getElementById('toggle3D').innerHTML = "<span class=\"material-icons\">map</span> Toggle 2D View";
-  document.getElementById('legendToggle').style.display = 'none';
 
   document.getElementById('map2D').style.display = 'none';
   const container = document.getElementById('map3D');
@@ -606,6 +626,9 @@ function create3DMap(data, currentCenter) {
   });
 
   let showNumData = 1000;
+
+  // Display instruction for number of data points
+  openDetailContainer("To reduce lag, number of data points is limited to 1000 points. Edit this value in the left sidebar.");
 
   function updateNumDataPoints() {
     const showNumDataInput = document.getElementById('showNumDataInput');
@@ -643,16 +666,17 @@ function create3DMap(data, currentCenter) {
     type: typeMapping[obj.type] || 'Unknown',
     satellite: obj.satellite
   }));
+
   function brightnessToColor(brightness) {
     const max = maxBrightness * 0.0001; // Assuming max brightness is scaled to 5
     const hue = (1 - brightness / max) * 240; // Scale to a hue value
     return `hsl(${hue}, 100%, 50%)`;
   }
 
-
   function updateColorRangeBar(minValue, maxValue) {
     const gradientStart = brightnessToColor(minValue * 0.0001);
     const gradientEnd = brightnessToColor(maxValue);
+
     const colorRangeBar = document.getElementById('colorRangeBar');
     colorRangeBar.style.background = `linear-gradient(to top, ${gradientStart}, ${gradientEnd})`;
 
@@ -668,17 +692,27 @@ function create3DMap(data, currentCenter) {
       <br>
       <br>
       <br>
+      <br>
       ${minValue}
     </div>
       `;
     colorRangeRange.innerHTML = colorDetails;
   }
 
+  function updateColorRangePoint(brightness) {
+    const colorRangePoint = document.getElementById('colorRangePoint');
+    const normalized = (brightness - minBrightness) / (maxBrightness - minBrightness);
+    const value = normalized * 90;
+    colorRangePoint.style.bottom = `${value}%`;
+    colorRangePoint.style.display = 'initial';
+  }
+
   updateColorRangeBar(minBrightness, maxBrightness);
 
   function handlePointClick(pointData) {
-    const detailBox = document.getElementById('detailBox');
     const date = new Date(pointData.date).toDateString();
+    updateColorRangePoint(pointData.temp);
+
     // Format the data to be displayed, e.g., as a string or HTML
     const dataDetails = `
       <div>
@@ -686,18 +720,17 @@ function create3DMap(data, currentCenter) {
       </div>
       <br />
       <div style="font-size: 18px;">
-        <b>Lat:</b> ${pointData.lat}
-        <b>Long:</b> ${pointData.lng}
+        <b title="Approximate latitude of the fire">Lat:</b> ${pointData.lat}
+        <b title="Approximate longitude of the fire">Long:</b> ${pointData.lng}
       </div>
       <br />
       <div style="font-size: 18px;">
         <b>Date:</b> ${date} <br />
-        <b>Time:</b> ${pointData.time} ${pointData.dayNight}
+        <b>Time:</b> ${pointData.time} UTC (${pointData.dayNight})
       </div>
       <br />
       <div style="font-size: 18px;">
-        <b>Brightness:</b> ${pointData.temp} K
-        <div id="colorRangeBarPoint"></div>
+        <b title="Brightness temperature of the fire measured in Kelvin">Temperature:</b> ${pointData.temp} Kelvin <br /><br />
         <b>Type:</b> ${pointData.type}
       </div>
       <br />
@@ -705,7 +738,8 @@ function create3DMap(data, currentCenter) {
     `;
 
     // Display the data in the detailBox
-    detailBox.innerHTML = dataDetails;
+    openDetailContainer(dataDetails);
+    // detailBox.innerHTML = dataDetails;
   }
 
   function handlePointHover(point, prevPoint) {
@@ -713,7 +747,7 @@ function create3DMap(data, currentCenter) {
 
     if (point) {
       // Format and display the data in hoverInfo
-      hoverInfo.innerHTML = `State: ${point.state}<br>Date: ${point.date}<br>Brightness: ${point.temp} Kelvin`;
+      hoverInfo.innerHTML = `State: ${point.state}<br>Date: ${point.date}<br>Temperature: ${point.temp} Kelvin`;
       // Use the brightnessToColor function to get the color based on point data
       const pointColor = brightnessToColor(point.brightness);
 
@@ -787,51 +821,23 @@ function formatTime(timeStr) {
   }
 }
 
-
 function updateDataCount(count) {
   document.getElementById('totalDataPoints').textContent = count;
 }
 
-function getDetail(d) {
-  const typeDescription = typeMapping[d.type] || 'Unknown';
-  const dayNightDescription = dayNightMapping[d.daynight] || 'Unknown';
-  const date = new Date(d.acq_date).toDateString();
-
-  return `
-      <div>
-        <b style="font-size: 24px;">${d.state_name}</b> 
-      </div>
-      <br />
-      <div style="font-size: 18px;">
-        <b>Lat:</b> ${d.latitude}
-        <b>Long:</b> ${d.longitude}
-      </div>
-      <br />
-      <div style="font-size: 18px;">
-        <b>Date:</b> ${date} <br />
-        <b>Time:</b> ${formatTime(d.acq_time)} ${dayNightDescription}
-      </div>
-      <br />
-      <div style="font-size: 18px;">
-        <b>Brightness:</b> ${d.bright_t31} K
-        <div id="colorRangeBarPoint"></div>
-        <b>Type:</b> ${typeDescription}
-      </div>
-      <br />
-      <i style="color: darkgray;">Taken by Satellite ${d.satellite}</i> 
-  `;
+function openDetailContainer(infotext) {
+  document.getElementById('detailContainer').style.display = "initial";
+  document.getElementById('closeButton').style.display = "initial";
+  var detailsBox = document.getElementById('detailBox');
+  detailsBox.style.display = 'block';
+  var detailsBoxText = document.getElementById('detailBoxText');
+  detailsBoxText.innerHTML = infotext;
 }
-/*
-<div title="Where the fire took place"><b>State:</b> ${d.state_name}</div>
-<div title="When the fire took place"><b>Date:</b> ${d.acq_date}</div>
-<div title="What time the fire took place"><b>Time:</b> ${formatTime(d.acq_time)}</div>
-<div title="Temperature of the fire measured in Kelvin"><b>Brightness(Temperature):</b> ${d.bright_t31} Kelvin</div>
-<div title="What the cause of the fire was"><b>Type:</b> ${typeDescription}</div>
-<div title="Whether the fire took place during the day or night"><b>Day/Night:</b> ${dayNightDescription}</div>
-<div title="Approximate latitude of the fire"><b>Latitude:</b> ${d.latitude}</div>
-<div title="Approximate longitude of the fire"><b>Longitude:</b> ${d.longitude}</div>
-<div title="Name of the Satellite that measured the data"><b>Satellite:</b> ${d.satellite}</div>
-*/
+
+function closeDetailContainer() {
+  document.getElementById('detailContainer').style.display = "none";
+}
+
 function getPlotlyLayout(divId) {
   let currentLayout = {};
   const gd = document.getElementById(divId);
@@ -846,10 +852,12 @@ function getPlotlyLayout(divId) {
 
 const toggleBtn = document.querySelector('.sidebar-toggle');
 const sidebar = document.querySelector('.sidebar');
+const sidebarFooter = document.querySelector('.sidebar-footer');
 
 toggleBtn.addEventListener('click', () => {
   toggleBtn.classList.toggle('is-closed');
   sidebar.classList.toggle('is-closed');
+  sidebarFooter.classList.toggle('is-closed');
 })
 
 // Expands and contracts expandContainer within typeContainer in sidebar

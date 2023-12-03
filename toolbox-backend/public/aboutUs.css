@@ -1,15 +1,62 @@
 html, body {
   margin:0;
   padding:0;
-  height:100%;
-  min-height:100%;
-  position:relative;
+  height: 100%;
+  scroll-behavior: smooth;
+  color: white;
+}
+
+#title, #team, #aboutProject, #footer {
+  min-height: 100vh;
+  z-index: 99;
+}
+
+.iframe-container {
+  position: relative;
+}
+
+.floating-link {
+  position: absolute;
+  padding: 5px; /* Optional: padding */
+  border-radius: 5px; /* Optional: border radius for rounded corners */
+  text-decoration: none; /* Optional: remove underline from link */
+}
+
+#back {
+  font-size: 15px;
+  position: absolute;
+
+}
+
+#GithubText {
+  font-size: 15px;
+  position: absolute;
+
+}
+
+h1 {
+  font-size: 80px;
+}
+
+#title {
+  display: flex;
+  height: 1000px;
+  width: 100%;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+}
+
+#titleText {
+  height: 40%;
+  margin-left: 10em;
 }
 
 #nav {
-  background-color: #3c3f41;
-  height: 80px;
-  padding-top: 20px;
+  width: 100%; /* or any specific width */
+  position: absolute;
+  z-index: 100;
+  position: fixed;
+  height: 60px;
 }
 
 #footer {
@@ -19,7 +66,8 @@ html, body {
 }
 
 #team {
-  margin-bottom: 50px;
+  padding-top: 50px;
+  background-color: gray;
 }
 
 #aboutProject {
@@ -30,7 +78,6 @@ html, body {
   display: table;
   width: 100%; /*Optional*/
   table-layout: fixed; /*Optional*/
-  border-spacing: 10px; /*Optional*/
 }
 
 .Column {
@@ -119,4 +166,43 @@ h1 {
 h2 a{
   color: #3c3f41; !important;
 
+}
+
+/* Styling the scrollbar track */
+::-webkit-scrollbar-track {
+  background-color: #f1f1f1;
+}
+
+/* Styling the scrollbar handle */
+::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+}
+
+/* Styling the scrollbar width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+.div-with-background {
+  position: relative;
+  z-index: 1;
+}
+
+.div-with-background::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('images/visualization.png') no-repeat center center;
+  background-size: auto;
+  opacity: 0.7; /* Adjust the opacity as needed */
+  z-index: -1;
 }

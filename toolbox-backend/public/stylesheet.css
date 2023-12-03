@@ -1,5 +1,6 @@
 :root {
   --fontSize: 16px;
+  color: white;
   --bgColor: #3c3f41;
   --primaryColor: #2c3e50;
   --secondaryColor: #34495e;
@@ -9,9 +10,8 @@
 body {
     margin: 0;
     padding: 0;
-    overflow: hidden;
     font-family: 'Roboto', sans-serif;
-    font-size: 16px;
+    font-size: var(--fontSize);
 }
 
 #map2D, #map3D {
@@ -34,11 +34,22 @@ body {
   flex-direction: column;
   align-items: center;
   text-align: center;
+  padding: 1em 0 1em 0;
+}
+
+#closeButton {
+  display: none;
+  position: absolute;
+  right: 4%;
+  cursor: pointer;
 }
 
 .sidebar {
     display: flex;
     justify-content: space-between;
+    overflow-y: auto  ;
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;  /* Firefox */
     position: fixed;
     width: 18em;
     height: 100vh;
@@ -51,18 +62,36 @@ body {
 }
 
 .sidebar-footer {
+  width: 18em;
+  padding: 1em;
   position: absolute;
-  bottom: 3em;
+  bottom: 0;
+  background-color: rgba(43, 45, 47, 0.9);
+  transition: .5s;
+}
+
+.sidebar::-webkit-scrollbar { 
+  display: none;  /* Safari and Chrome */
 }
 
 .sidebar.is-closed {
     transform: translateX(-20em);
 }
 
+.sidebar-footer.is-closed {
+    transform: translateX(-20em);
+}
+
+.sidebar-toggle.is-closed {
+    transform: translateX(-24em);
+}
+
 .sidebar-toggle {
-    width: 60px;
+    width: 40px;
     height: 60px;
-    margin-left: 1.8em;
+    position: absolute;
+    top: 48%;
+    left: 24em;
     align-self: center;
     cursor: pointer;
     transition: .5s;
@@ -105,7 +134,6 @@ select {
 .select {
     position: relative;
     display: flex;
-    width: 17.5em;
     height: 3em;
     border-radius: .25em;
     overflow: hidden;
@@ -130,7 +158,6 @@ select {
 #topSection {
   border-radius: .25em;
   background-color: var(--primaryColor);
-  width: 17.5em;
   height: 3em;
   box-sizing: border-box;
 }
@@ -152,6 +179,7 @@ select {
   height: 100%;
   background-color: var(--secondaryColor);
   border: 0;
+  border-radius: 0px .25em .25em 0px;
 }
 
 #topButton button::after {
@@ -189,8 +217,7 @@ select {
 /* Styles for topSection2 */
 #topSection2 {
   border-radius: .25em;
-  background-color: #2c3e50;
-  width: 17.5em;
+  background-color: var(--primaryColor);
   height: 3em;
   box-sizing: border-box;
 }
@@ -214,6 +241,7 @@ select {
   height: 100%;
   background-color: #34495e;
   border: 0;
+  border-radius: 0px .25em .25em 0px;
 }
 
 #topButton2 button::after {
@@ -222,7 +250,7 @@ select {
 }
 
 #topButton2 button:hover::after {
-  color: #f39c12;
+  color: var(--toggleColor);
   transition: .25s all ease;
 }
 
@@ -234,14 +262,14 @@ select {
 /* Styles for expandContainer2 */
 #expandContainer2 {
   overflow: hidden;
-  background-color: #2c3e50;
+  background-color: var(--primaryColor);
   padding: 0px;
   transition: all 0.5s;
 }
 
 #expandContainer2.expanded {
   overflow: hidden;
-  background-color: #2c3e50;
+  background-color: var(--primaryColor);
   padding: 15px;
 }
 
@@ -357,8 +385,7 @@ input[type="date"] {
 }
 
 #toggle3D  {
-    align-self: end;
-    width: 15.5em;
+    width: 16em;
     height: 3em;
     background-color: var(--primaryColor);
     border-radius: .25em;
@@ -369,7 +396,6 @@ input[type="date"] {
     padding: 9px 20px 8px;
     text-align: center;
     transition: .25s all ease;
-    vertical-align: middle;
 }
 
 #toggle3D:hover {
@@ -379,7 +405,7 @@ input[type="date"] {
 #legendToggle  {
   margin-top: 20px;
   align-self: end;
-  width: 15.5em;
+  width: 16em;
   height: 3em;
   background-color: var(--primaryColor);
   border-radius: .25em;
@@ -398,6 +424,8 @@ input[type="date"] {
 }
 
 #colorRangeBar {
+    display: flex;
+    justify-content: center;
     position: fixed;
     bottom: 50px;
     right: 0;
@@ -410,13 +438,15 @@ input[type="date"] {
     margin: 10px;
 }
 
-#colorRangeBarPoint {
-  width: 90%;
-  height: 20px;
-  border: 1px solid #000;
-  border-radius: 5px;
-  background: linear-gradient(to right, hsl(240, 100%, 50%), hsl(0, 100%, 50%));
-  margin: 10px;
+#colorRangePoint {
+    display: none;
+    position: absolute;
+    margin-right: 0.5px;
+    width: 17px;
+    height: 17px;
+    border-radius: 50%;
+    background: white;
+    box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 1);
 }
 
 #hoverInfo {
@@ -430,8 +460,8 @@ input[type="date"] {
 }
 
 #showNumData {
-  padding-bottom: 20px;
-  margin-top: 10px;
+  padding: 1em;
+  border-radius: 5px;
   background-color: var(--primaryColor);
 }
 
@@ -439,7 +469,7 @@ input[type="date"] {
   position: relative;
   display: inline-block;
   border-bottom: 1px dotted black;
-  margin: 10px;
+  margin-bottom: 0.5em;
 }
 
 .tooltip .tooltiptext {
@@ -500,7 +530,7 @@ input[type="date"] {
 }
 
 #aboutUs a:hover {
-  color: #f39c12;
+  color: var(--toggleColor);
   transition: .25s all ease;
   text-decoration-line: none;
 }
@@ -515,15 +545,12 @@ input[type="date"] {
 }
 
 #github a:hover {
-  color: #f39c12;
+  color: var(--toggleColor);
   transition: .25s all ease;
   text-decoration-line: none;
 }
 
 #showNumDataInput {
-  margin: 10px;
-  margin-left: 20px; !important;
-  margin-right: 0px; !important;
   height: 20px;
 }
 
@@ -537,11 +564,11 @@ input[type="date"] {
   cursor: pointer;
   border: white solid 2px;
   color: white;
-  background: #2c3e50;
+  background: var(--primaryColor);
 }
 
 #showNumDataButton:hover {
-  color: #f39c12;
+  color: var(--toggleColor);
   transition: .25s all ease;
   text-decoration-line: none;
 }

@@ -1,0 +1,122 @@
+<html>
+<script src="chrome-extension://eppiocemhmnlbhjplcgkofciiegomcon/libs/extend-native-history-api.js"></script>
+<head><meta charset="utf-8"></head>
+
+  <style>
+    html, body {
+      background-color: #3c3f41;
+      height: 100%; /* Ensures that the body takes full viewport height */
+      margin: 0;   /* Remove default margin */
+      display: flex; /* Use flex layout */
+      align-items: center; /* Center vertically */
+    }
+
+    #content {
+      min-height: 100vh;
+      margin-left: 10%;
+      display: flex; /* Use flex layout for the container */
+      align-items: center; /* Center vertically */
+      height: 100%; /* Take full height of the parent */
+    }
+
+    canvas {
+      display: block;
+      margin: auto;
+    }
+  </style>
+
+  <div id="content">
+    <canvas width="1000" height="1000"></canvas>
+  </div>
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/6.2.0/d3.min.js"></script>
+
+<script>
+  // Create a projection for the globe
+  let projection = d3.geoOrthographic()
+      .scale(500)
+      .translate([500, 500]);
+
+  // Set up the canvas context
+  let context = d3.select('#content canvas')
+      .node()
+      .getContext('2d');
+
+  // Define the geoPath generator
+  let geoGenerator = d3.geoPath()
+      .projection(projection)
+      .context(context);
+
+  // Variables to control rotation and current year
+  let yaw = 0;
+  let currentYear = 2001;
+  let firesData = {};
+
+  // Function to load fire data for a specific year
+  function loadFiresData(year) {
+    d3.csv(`data/modis_${year}_United_States.csv`).then(function(data) {
+      // Randomly filter out about two-thirds of the data
+      let filteredData = data.filter(() => Math.random() < 0.1);
+      firesData[year] = filteredData;
+    });
+  }
+
+  // Load fire data for all years
+  for (let year = 2001; year <= 2022; year++) {
+    loadFiresData(year);
+  }
+
+  // Update function for the globe
+  function update() {
+    projection.rotate([yaw, -35]);
+    context.clearRect(0, 0, 1000, 1000);
+
+    // Draw the globe
+    context.lineWidth = 0.5;
+    context.strokeStyle = '#ccc';
+    context.beginPath();
+    geoGenerator({type: 'FeatureCollection', features: geojson.features});
+    context.stroke();
+
+    // Draw graticule
+    let graticule = d3.geoGraticule();
+    context.beginPath();
+    context.strokeStyle = '#ccc';
+    geoGenerator(graticule());
+    context.stroke();
+
+    // Draw fires
+    if (firesData[currentYear]) {
+      firesData[currentYear].forEach(fire => {
+        const coords = projection([fire.longitude, fire.latitude]);
+        if (coords) {
+          context.beginPath();
+          context.arc(coords[0], coords[1], 2, 0, 2 * Math.PI);
+          context.fillStyle = '#f2d08a';
+          context.fill();
+        }
+      });
+    }
+
+    yaw += 0.2; // Increment yaw for rotation
+    if (yaw >= 360) { // Update year after a full rotation
+      yaw = 0;
+      currentYear++;
+      if (currentYear > 2022) currentYear = 2001;
+    }
+  }
+
+  // Load base map data and start the rotation
+  d3.json('https://gist.githubusercontent.com/d3indepth/f28e1c3a99ea6d84986f35ac8646fac7/raw/c58cede8dab4673c91a3db702d50f7447b373d98/ne_110m_land.json')
+      .then(function(json) {
+        geojson = json;
+        window.setInterval(update, 100); // Update the globe every 100ms
+      });
+
+
+
+</script>
+
+</body><grammarly-desktop-integration data-grammarly-shadow-root="true"></grammarly-desktop-integration></html>
