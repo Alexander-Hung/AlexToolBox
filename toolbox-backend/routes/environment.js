@@ -1,10 +1,10 @@
 module.exports = {
-  IP: 'https://www.alextoolbox.online', //http://www.alextoolbox.online
+  IP: '', //replace with your domain address
   UPLOAD_PATH: './uploads/',
   TEMP_PATH: './temp',
-  PASSWORD: 'supersecret',
-  KEY_PATH: 'D:/alextoolbox.online/private.key',
-  CER_PATH: 'D:/alextoolbox.online/certificate.crt',
-  CA_PATH: 'D:/alextoolbox.online/ca_bundle.crt'
+  PASSWORD: '', //password
+  KEY_PATH: '', // private.key path
+  CER_PATH: '', //certificate.crt path
+  CA_PATH: '' // ca_bundle.crt path
 
 };
