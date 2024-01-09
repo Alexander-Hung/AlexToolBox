@@ -44,12 +44,11 @@ export class FileShareComponent implements OnInit, OnDestroy  {
 
 
   deleteFile(file: string) {
-    this.http.delete(`${environment.apiBaseUrl}/delete/${file}`).subscribe(response => {
+    this.http.delete(`${environment.apiBaseUrl}/delete/${file}`).subscribe((response: any) => {
       console.log('File deleted');
       this.refreshFileList();  // Refresh the file list after deleting a file
-    }, error => {
+    }, (error: any) => {
       this.refreshFileList();
-      console.error('Error deleting file:', error);
     });
   }
   onFileSelected(event: any) {

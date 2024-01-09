@@ -15,10 +15,6 @@ const UPLOAD_PATH = env.UPLOAD_PATH;
 var app = express();
 const port = 5000;
 
-const privateKey = fs.readFileSync('ENTER_YOUR_KEY', 'utf8');
-const certificate = fs.readFileSync('ENTER_YOUR_CERT', 'utf8');
-const credentials = { key: privateKey, cert: certificate };
-
 
 // Middleware
 app.use(cors());
@@ -71,7 +67,6 @@ app.delete('/delete/:filename', (req, res) => {
     console.error('File not found:', req.params.filename);
     return res.status(404).send('File not found');
   }
-
   fs.unlink(file, (err) => {
     if (err) {
       console.error('Error deleting file:', err);
@@ -106,6 +101,10 @@ app.use((req, res, next) => {
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
 });
+
+const privateKey = fs.readFileSync('D:/alextoolbox.online/private.key', 'utf8');
+const certificate = fs.readFileSync('D:/alextoolbox.online/certificate.crt', 'utf8');
+const credentials = { key: privateKey, cert: certificate };
 
 const httpsServer = https.createServer(credentials, app);
 

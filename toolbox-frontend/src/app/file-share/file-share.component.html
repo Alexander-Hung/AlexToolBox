@@ -20,42 +20,77 @@
     </mat-nav-list>
   </mat-sidenav>
 
-    <mat-sidenav-content>
-      <div style="text-align: center">
+  <mat-sidenav-content>
+    <div style="text-align: center">
+      <div *ngIf="isLocked">
         <p>Please note: Files upload publicly on server can be very dangerous as it can expose system to various security risks.<br>
           To ensure the security, this service will be locked</p>
-        <div *ngIf="isLocked">
-          <button mat-raised-button (click)="promptPassword()">Unlock File Share</button>
-        </div>
+        <button mat-raised-button (click)="promptPassword()">Unlock File Share</button>
       </div>
+    </div>
 
-      <div *ngIf="!isLocked">
+    <div *ngIf="!isLocked">
 
       <router-outlet class="context" style="text-align: center">
         <h4>**Auto refresh may not working, please refresh list by yourself**</h4>
       </router-outlet>
 
-      <div class="context">
-        <!-- Upload Section -->
-        <button style="margin-right: 300px; margin-bottom: 100px" mat-raised-button (click)="fileInput.click()">Upload File</button>
-        <input hidden type="file" #fileInput (change)="onFileSelected($event)" />
+      <!-- Progress Bar -->
+      <div style="text-align: center">
+        <mat-progress-bar style="height: 100px; width: 90%; margin-left: 5%" mode="determinate" [value]="uploadProgress"></mat-progress-bar>
       </div>
 
-      <router-outlet class="context">
-        <!-- File List Section -->
-        <mat-list *ngIf="files.length > 0">
-          <mat-list-item *ngFor="let file of files">
-            <button mat-raised-button (click)="downloadFile(file)">{{ file }}</button>
-            <button *ngIf="uploadProgress === 0 || uploadProgress === 100" mat-raised-button color="warn" (click)="deleteFile(file)">Delete</button>
-          </mat-list-item>
-        </mat-list>
+      <router-outlet>
+        <!-- File Table Section -->
+        <style>
+          table {
+            border-collapse: collapse;
+            width: 80%;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 0;
+            margin-bottom: 0;
+          }
+
+          th, td {
+            border: 1px solid black;
+            text-align: center;
+            padding: 8px;
+          }
+
+          th {
+            background-color: #f2f2f2;
+          }
+        </style>
+
+        <!-- Upload Section -->
+        <table>
+          <button style="margin-bottom: 10px" mat-raised-button (click)="fileInput.click()">Upload File</button>
+          <input hidden type="file" #fileInput (change)="onFileSelected($event)" />
+        </table>
+        <table *ngIf="files.length > 0">
+          <thead>
+          <tr>
+            <th>Name</th>
+            <th>Actions</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let file of files">
+            <td>
+              <h3>{{ file }}</h3>
+            </td>
+            <td>
+              <button *ngIf="uploadProgress === 0 || uploadProgress === 100" mat-raised-button color="warn" (click)="deleteFile(file)">Delete</button>
+              <button mat-raised-button (click)="downloadFile(file)">Download</button>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+
 
       </router-outlet>
-        <!-- Progress Bar -->
-        <div style="text-align: center">
-          <p>{{uploadProgress}}%</p>
-          <mat-progress-bar style="height: 100px; width: 90%; margin-left: 5%" mode="determinate" [value]="uploadProgress"></mat-progress-bar>
-        </div>
-      </div>
-    </mat-sidenav-content>
-  </mat-sidenav-container>
+
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
