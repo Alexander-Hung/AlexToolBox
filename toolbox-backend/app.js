@@ -15,17 +15,9 @@ const UPLOAD_PATH = env.UPLOAD_PATH;
 var app = express();
 const port = 5000;
 
-const privateKey = fs.readFileSync(`${env.KEY_PATH}`, 'utf8');  //remove if not working
-const certificate = fs.readFileSync(`${env.CER_PATH}`, 'utf8'); //remove if not working
-const ca = fs.readFileSync(`${env.CA_PATH}`, 'utf8'); //remove if not working
-
-const credentials = { //remove if not working
-  key: privateKey,//remove if not working
-  cert: certificate,//remove if not working
-  ca: ca, // Optional, if you have the CA bundle//remove if not working
-};//remove if not working
-
-const httpsServer = https.createServer(credentials, app);//remove if not working
+const privateKey = fs.readFileSync('ENTER_YOUR_KEY', 'utf8');
+const certificate = fs.readFileSync('ENTER_YOUR_CERT', 'utf8');
+const credentials = { key: privateKey, cert: certificate };
 
 
 // Middleware
@@ -89,6 +81,14 @@ app.delete('/delete/:filename', (req, res) => {
   });
 });
 
+app.get('/express', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public/express.html'));
+});
+
+app.get('/why-fires', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public/why-fires.html'));
+});
+
 
 
 
@@ -107,8 +107,14 @@ app.use((req, res, next) => {
   next();
 });
 
+const httpsServer = https.createServer(credentials, app);
+
+
 // Routes
-app.use('/', require('./routes/index'));
+app.use(express.static(__dirname + '/dist/toolbox-frontend'));
+app.get('*', function(req, res) {
+  res.sendFile(path.join(__dirname + '/dist/toolbox-frontend/index.html'));
+});
 app.use('/users', require('./routes/users'));
 app.use('/compile', require('./routes/compile'));
 

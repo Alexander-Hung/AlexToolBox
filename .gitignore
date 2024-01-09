@@ -1,6 +1,7 @@
-
+.idea
 node_modules
 package-lock.json
 package.json
 toolbox-backend/temp/
 toolbox-backend/uploads/
+toolbox-frontend/.vscode
