@@ -15,6 +15,8 @@ const UPLOAD_PATH = env.UPLOAD_PATH;
 var app = express();
 const port = 5000;
 
+const privateKey = fs.readFileSync('ENTER_YOUR_KEY', 'utf8');
+const certificate = fs.readFileSync('ENTER_YOUR_CERT', 'utf8');
 
 // Middleware
 app.use(cors());
@@ -102,8 +104,7 @@ app.use((req, res, next) => {
   next();
 });
 
-const privateKey = fs.readFileSync('D:/alextoolbox.online/private.key', 'utf8');
-const certificate = fs.readFileSync('D:/alextoolbox.online/certificate.crt', 'utf8');
+
 const credentials = { key: privateKey, cert: certificate };
 
 const httpsServer = https.createServer(credentials, app);
