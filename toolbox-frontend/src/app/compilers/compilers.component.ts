@@ -15,9 +15,25 @@ export class CompilersComponent {
 
   constructor(private http: HttpClient) {}
 
-  promptPassword() {
+  promptPwd() {
     const password = prompt('Enter password to unlock:');
-    if (password === `${environment.password}`) {
+
+    let hex = '';
+    // @ts-ignore
+    for (let i = 0; i < password.length; i++) {
+      // @ts-ignore
+      hex += password.charCodeAt(i).toString(16);
+    }
+
+    let hex2 = '';
+    // @ts-ignore
+    for (let i = 0; i < `${environment.password}`.length; i++) {
+      // @ts-ignore
+      hex2 += `${environment.password}`.charCodeAt(i).toString(16);
+    }
+
+    // @ts-ignore
+    if (hex === hex2) {   //if (password === `${environment.password}`) {
       this.isLocked = false;
     } else {
       alert('Incorrect password!');
